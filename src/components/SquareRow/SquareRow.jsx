@@ -4,7 +4,7 @@ import '../SquareRow/SquareRow.css'
 
 const SquareRow = () => {
     return (  
-        <div className={SquareRow}>
+        <div className="SquareRow">
         <SquareSpace />
         <SquareSpace />
         <SquareSpace />
