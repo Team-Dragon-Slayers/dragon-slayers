@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './SquareSpace.module.css';
 
 const SquareSpace = () => {
-    return (  
-        <div className={styles.SquareSpace}>
-            
-        </div>
-    );
+    return ( 
+        <>
+         <div className={styles.SquareSpace} />
+        </>
+     );
 }
  
 export default SquareSpace;

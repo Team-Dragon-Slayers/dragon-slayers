@@ -2,4 +2,6 @@
     width: 40px;
     height: 40px;
     background-color: blue;
+    border: 1px black solid;
+    display: inline-block;
 }

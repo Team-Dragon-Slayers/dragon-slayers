@@ -1,8 +1,8 @@
-.Zone {
+.SquareRow {
     display: inline-block;
     border: 1px black solid;
-    width: 300px;
-    height: 150px;
-    background-color: red;
+    width: 400px;
+    height: 50px;
+    background-color: purple;
     padding-top: 5px;
 }

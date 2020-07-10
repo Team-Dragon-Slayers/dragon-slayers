@@ -7,6 +7,10 @@ const Gameboard = (props) => {
     return ( 
         <div className={styles.GameBoard}>
             <Zone/>
+            <Zone/>
+            <Zone/>
+            <Zone/>
+            <Zone/>
 
         </div>
     );
