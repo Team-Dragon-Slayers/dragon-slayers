@@ -1,5 +1,6 @@
 .GameBoard {
-    border: 1px;
+    border: 1px black;
     height: 300px;
     width: 300px;
+    background-color: pink;
 }
