@@ -6,16 +6,35 @@ import CardRow from './components/CardRow/CardRow';
 
 class App extends Component {
   state = { 
-    playerLocation: 1
+    // playerLocation: 1,
+    playerLocation: {
+      zone: 1,
+      row: 1,
+      space: 1
+    },
+    test: ''
    }
 
    handlePlayerMovement = () => {
     let dieRoll = Math.ceil(Math.random() * 6);
-    let newLocation = dieRoll + this.state.playerLocation;
+    let newLocation = dieRoll + this.state.playerLocation.space;
+    let row = this.state.playerLocation.row;
+    let zone = this.state.playerLocation.zone;
+    let space = this.state.playerLocation.space;
+    if (newLocation > 10){
+      row++;
+      if(row > 3){  // if exiting zone, stay on last space for boss
+        zone++;
+      }
+      space = newLocation-10;
+    }
+    else space += dieRoll;
     console.log(dieRoll);
     this.setState({
-      playerLocation: newLocation
+      playerLocation: {zone: zone, row: row, space: space}
+      
     });
+    console.log(this.state)
   }
  
 
