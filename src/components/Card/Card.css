@@ -1,0 +1,6 @@
+.Card{
+    width: 50px;
+    height: 100px;
+    display: inline-block;
+    border: solid black 1px;
+}
