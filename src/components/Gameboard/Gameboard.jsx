@@ -6,7 +6,6 @@ import Zone from '../Zone/Zone';
 const Gameboard = (props) => {
     return ( 
         <div className={styles.GameBoard}>
-            <h1>GameBoard</h1>
             <Zone/>
 
         </div>

@@ -1,5 +1,6 @@
 .Zone {
-    border: 1px;
+    border: 1px black;
     width: 150px;
     height: 50px;
+    background-color: red;
 }
