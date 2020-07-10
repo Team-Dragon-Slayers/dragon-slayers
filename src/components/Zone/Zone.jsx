@@ -1,11 +1,13 @@
 import React from 'react';
 import styles from './Zone.module.css';
-import SquareSpace from '../SquareSpace/SquareSpace';
+import SquareRow from '../SquareRow/SquareRow';
 
 const Zone = () => {
     return ( 
         <div className={styles.Zone}>
-            <SquareSpace />
+            <SquareRow />
+            <SquareRow />
+            <SquareRow />
         </div>
     );
 }
