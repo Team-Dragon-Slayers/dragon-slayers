@@ -6,45 +6,43 @@ const rows = [1, 2, 3];
 
 const Zone = (props) => {
     return ( 
-        <div className={styles.Zone}>
-            {props.playerLocation ?
-                rows.map((el)=>
-                props.playerLocation.row === el ?
-                <SquareRow 
-                    playerLocation={props.playerLocation}
-                    zone={props.zone}
-                    row={el}
+        // <div className={styles.Zone}>
+        //     {props.playerLocation ?
+        //         rows.map((el)=>
+        //         props.playerLocation.row === el ?
+        //         <SquareRow 
+        //             playerLocation={props.playerLocation}
+        //             zone={props.zone}
+        //             row={el}
 
-                /> :
-                <SquareRow 
-                    zone={props.zone}
-                    row={el} />
-                )
-            :
-            <>
-            <SquareRow 
-                zone={props.zone}
-                row={rows[0]}
-            />
-            <SquareRow 
-                zone={props.zone}
-                row={rows[1]}
-            />
-            <SquareRow 
-                zone={props.zone}
-                row={rows[2]}
-            />
+        //         /> :
+        //         <SquareRow 
+        //             zone={props.zone}
+        //             row={el} />
+        //         )
+        //     :
+        //     <>
+        //     <SquareRow 
+        //         zone={props.zone}
+        //         row={rows[0]}
+        //     />
+        //     <SquareRow 
+        //         zone={props.zone}
+        //         row={rows[1]}
+        //     />
+        //     <SquareRow 
+        //         zone={props.zone}
+        //         row={rows[2]}
+        //     />
           
-            </>
-            }
-            {/* {props.playerLocation ? 
-            <p>{props.playerLocation.zone}</p> : 
-            <p>nothing</p>
-        }
-            <SquareRow />
-            <SquareRow />
-            <SquareRow /> */}
-        </div>
+        //     </>
+        // </div>
+
+        <div className={styles.SquareRow}>
+        {rows.map((el) =>
+            <SquareRow zone={props.zone} row={el}/>
+        )}
+    </div>
     );
 }
  

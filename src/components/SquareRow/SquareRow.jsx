@@ -15,8 +15,6 @@ const typeOfSquare = () => {
         return "Treasure";
     } else return "Blank"
 }
-let randomMonster = Math.floor(Math.random() * 10);
-let randomTreasure = Math.floor(Math.random() * 10);
 
 const SquareRow = (props) => {
     return (  
@@ -29,6 +27,7 @@ const SquareRow = (props) => {
                     zone={props.zone}
                     row={props.row}
                     space={el}
+                    type={typeOfSquare()}
                 /> :
                 <SquareSpace 
                     zone={props.zone}
