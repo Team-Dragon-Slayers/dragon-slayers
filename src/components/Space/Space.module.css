@@ -1,0 +1,25 @@
+.SquareSpace {
+    width: 40px;
+    height: 40px;
+    background-color: blue;
+    border: 1px black solid;
+    display: inline-block;
+    color: yellow;
+}
+
+.Player {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 1px black solid;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.Monster {
+    width: 40px;
+    height: 40px;
+    background-color: brown;
+    border: 1px black solid;
+    color: yellow;
+}

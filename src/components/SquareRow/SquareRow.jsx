@@ -28,13 +28,14 @@ const SquareRow = (props) => {
                     row={props.row}
                     space={el}
                     type={typeOfSquare()}
+                    
                 /> :
                 <SquareSpace 
                     zone={props.zone}
                     row={props.row}
                     space={el}
                     type={typeOfSquare()}
-
+                    
                 />
                 )
             :
@@ -45,6 +46,7 @@ const SquareRow = (props) => {
                 row={props.row}
                 space={el}
                 type={typeOfSquare()}
+                boardArr={props.boardArr}
             />
             )}
             </>

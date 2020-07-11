@@ -40,7 +40,11 @@ const Zone = (props) => {
 
         <div className={styles.SquareRow}>
         {rows.map((el) =>
-            <SquareRow zone={props.zone} row={el}/>
+            <SquareRow 
+                zone={props.zone} 
+                row={el}
+                
+            />
         )}
     </div>
     );
