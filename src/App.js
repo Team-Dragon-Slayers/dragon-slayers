@@ -6,13 +6,11 @@ import CardRow from './components/CardRow/CardRow';
 
 class App extends Component {
   state = { 
-    // playerLocation: 1,
     playerLocation: {
       zone: 1,
       row: 1,
       space: 1
-    },
-    test: ''
+    }
    }
 
    handlePlayerMovement = () => {
@@ -23,7 +21,7 @@ class App extends Component {
     let space = this.state.playerLocation.space;
     if (newLocation > 10){
       row++;
-      if(row > 3){  // if exiting zone, stay on last space for boss
+      if(row > 5){  // if exiting zone, stay on last space for boss
         zone++;
       }
       space = newLocation-10;
@@ -42,8 +40,10 @@ class App extends Component {
     return ( 
       <>
       <button onClick={this.handlePlayerMovement}>Roll Die</button>
-      <Gameboard />
+      <Gameboard
+        playerLocation={this.state.playerLocation} />
       <CardRow />
+
       </>
     );
   }
