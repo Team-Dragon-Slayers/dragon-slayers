@@ -14,34 +14,52 @@ const Zone = (props) => {
                     playerLocation={props.playerLocation}
                     zone={props.zone}
                     row={el}
-                    findTypeOfSquare={props.findTypeOfSquare}
+                    // findTypeOfSquare={props.findTypeOfSquare}
 
                 /> :
                 <SquareRow 
                     zone={props.zone}
                     row={el} 
-                    findTypeOfSquare={props.findTypeOfSquare}
+                    // findTypeOfSquare={props.findTypeOfSquare}
                     />
                 )
             :
+            props.findTypeOfSquare ?
             <>
             <SquareRow 
-                zone={props.zone}
-                row={rows[0]}
-                findTypeOfSquare={props.findTypeOfSquare}
+            zone={props.zone}
+            row={rows[0]}
+            findTypeOfSquare={props.findTypeOfSquare}
             />
             <SquareRow 
-                findTypeOfSquare={props.findTypeOfSquare}
-                zone={props.zone}
-                row={rows[1]}
+            findTypeOfSquare={props.findTypeOfSquare}
+            zone={props.zone}
+            row={rows[1]}
             />
             <SquareRow 
-                zone={props.zone}
-                row={rows[2]}
-          findTypeOfSquare={props.findTypeOfSquare}
+            zone={props.zone}
+            row={rows[2]}
+            findTypeOfSquare={props.findTypeOfSquare}
             />
-          
             </>
+             : 
+            <>
+          <SquareRow 
+            zone={props.zone}
+            row={rows[0]}
+           
+            />
+            <SquareRow 
+            zone={props.zone}
+            row={rows[1]}
+            />
+            <SquareRow 
+            zone={props.zone}
+            row={rows[2]}
+            />
+
+            </>
+
         }
         </div>
 

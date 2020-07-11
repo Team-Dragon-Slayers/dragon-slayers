@@ -15,26 +15,34 @@ const SquareRow = (props) => {
                     zone={props.zone}
                     row={props.row}
                     space={el}
-                    type={props.findTypeOfSquare()}
+                    // type={props.findTypeOfSquare()}
                 /> :
                 <SquareSpace 
                     zone={props.zone}
                     row={props.row}
                     space={el}
-                    type={props.findTypeOfSquare()}
+                    // type={props.findTypeOfSquare()}
 
                 />
                 )
             :
             <>
             {spaces.map((el) =>
-            <SquareSpace 
+            props.findTypeOfSquare ?
+                <SquareSpace 
                 zone={props.zone}
                 row={props.row}
                 space={el}
                 type={props.findTypeOfSquare()}
-            />
-            )}
+                />
+                :
+                <SquareSpace 
+                zone={props.zone}
+                row={props.row}
+                space={el}
+                />
+                
+                )}
             </>
             }
         </div>

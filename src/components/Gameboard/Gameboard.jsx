@@ -8,18 +8,29 @@ const zones=[1,2,3,4,5];
 const Gameboard = (props) => {
     return ( 
         <div className={styles.GameBoard}>
-        {zones.map((el)=>
-            props.playerLocation.zone === el ?
+        {props.playerLocation ?
+            zones.map((el)=>
+                props.playerLocation.zone === el ?
+                <Zone 
+                    playerLocation={props.playerLocation}
+                    zone={el}
+                    findTypeOfSquare={props.findTypeOfSquare}
+                    /> :
+                <Zone 
+                    zone={el}
+                    findTypeOfSquare={props.findTypeOfSquare}
+                />)
+            :
+            zones.map((el) =>
+            props.findTypeOfSquare ?
             <Zone 
-                playerLocation={props.playerLocation}
-                zone={el}
-                findTypeOfSquare={props.findTypeOfSquare}
-                /> :
-            <Zone 
-                zone={el}
-                findTypeOfSquare={props.findTypeOfSquare}
-            />
-        )}
+            zone={el}
+            findTypeOfSquare={props.findTypeOfSquare} />
+            :
+            <Zone zone={el} />
+            )
+
+        }
 
         </div>
 
