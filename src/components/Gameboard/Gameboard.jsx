@@ -23,7 +23,9 @@ const Gameboard = (props) => {
 
         <div className={styles.GameBoard}>
             {zones.map((el) =>
-                <Zone zone={el} />
+                <Zone zone={el} 
+                    findTypeOfSquare={props.findTypeOfSquare}
+                />
             )}
 
         </div>
