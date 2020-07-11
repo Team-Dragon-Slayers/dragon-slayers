@@ -4,6 +4,9 @@ import '../SquareRow/SquareRow.css'
 
 const spaces = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
+let randomMonster = Math.floor(Math.random() * 10);
+let randomTreasure = Math.floor(Math.random() * 10);
+
 const SquareRow = (props) => {
     return (  
         <div className="SquareRow">
@@ -20,6 +23,7 @@ const SquareRow = (props) => {
                     zone={props.zone}
                     row={props.row}
                     space={el}
+                    type={randomMonster === el ? "Monster" : "Blank"}
                 />
                 )
             :
@@ -29,6 +33,7 @@ const SquareRow = (props) => {
                 zone={props.zone}
                 row={props.row}
                 space={idx}
+                type={randomMonster === idx ? "Monster" : "Blank"}
             />
             )}
             </>
