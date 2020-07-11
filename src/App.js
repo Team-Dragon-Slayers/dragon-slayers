@@ -7,7 +7,9 @@ import Player from './components/Player/Player';
 
 const App = () => {
 
-  const [playerLocation, setPlayerLocation] = useState({zone: 1, row: 1, space: 1})
+  const [playerLocation, setPlayerLocation] = useState({zone: 1, row: 1, space: 1});
+
+
 
   const findTypeOfSquare = () => {
     let type = Math.floor(Math.random() * 3);
@@ -35,7 +37,7 @@ const App = () => {
       setPlayerLocation({
         zone, row, space
       });
-    }
+  }
   
 
   useEffect(() => {
@@ -119,7 +121,7 @@ const App = () => {
       <Gameboard 
         playerLocation={playerLocation} 
         findTypeOfSquare={findTypeOfSquare}/>
-      <Player />
+      {/* <Player /> */}
       <CardRow />
 
 
