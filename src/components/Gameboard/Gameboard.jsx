@@ -21,7 +21,7 @@ const Gameboard = (props) => {
             </>
         } */}
         {arr.map((el)=>
-            props.playerLocation.zone = el ?
+            props.playerLocation.zone === el ?
             <Zone 
                 playerLocation={props.playerLocation}
             /> :

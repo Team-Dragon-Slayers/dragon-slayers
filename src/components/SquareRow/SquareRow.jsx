@@ -2,16 +2,30 @@ import React, { Component } from 'react';
 import SquareSpace from '../SquareSpace/SquareSpace';
 import '../SquareRow/SquareRow.css'
 
-const SquareRow = () => {
+const arr = [1, 2, 3, 4, 5, 6, 7]
+
+const SquareRow = (props) => {
     return (  
         <div className="SquareRow">
-        <SquareSpace />
-        <SquareSpace />
-        <SquareSpace />
-        <SquareSpace />
-        <SquareSpace />
-        <SquareSpace />
-        <SquareSpace />
+             {props.playerLocation ?
+                arr.map((el)=>
+                props.playerLocation.zone === el ?
+                <SquareSpace
+                    playerLocation={props.playerLocation}
+                /> :
+                <SquareSpace />
+                )
+            :
+            <>
+            <SquareSpace />
+            <SquareSpace />
+            <SquareSpace />
+            <SquareSpace />
+            <SquareSpace />
+            <SquareSpace />
+            <SquareSpace />
+            </>
+            }
         </div>
     );
 }
