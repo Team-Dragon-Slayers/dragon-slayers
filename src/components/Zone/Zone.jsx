@@ -2,24 +2,39 @@ import React from 'react';
 import styles from './Zone.module.css';
 import SquareRow from '../SquareRow/SquareRow';
 
-const arr = [1, 2, 3];
+const rows = [1, 2, 3];
 
 const Zone = (props) => {
     return ( 
         <div className={styles.Zone}>
             {props.playerLocation ?
-                arr.map((el)=>
+                rows.map((el)=>
                 props.playerLocation.row === el ?
                 <SquareRow 
                     playerLocation={props.playerLocation}
+                    zone={props.zone}
+                    row={el}
+
                 /> :
-                <SquareRow />
+                <SquareRow 
+                    zone={props.zone}
+                    row={el} />
                 )
             :
             <>
-            <SquareRow />
-            <SquareRow />
-            <SquareRow />
+            <SquareRow 
+                zone={props.zone}
+                row={rows[0]}
+            />
+            <SquareRow 
+                zone={props.zone}
+                row={rows[1]}
+            />
+            <SquareRow 
+                zone={props.zone}
+                row={rows[2]}
+            />
+          
             </>
             }
             {/* {props.playerLocation ? 
