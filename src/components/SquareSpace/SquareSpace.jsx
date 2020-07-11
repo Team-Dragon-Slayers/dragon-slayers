@@ -4,9 +4,13 @@ import styles from './SquareSpace.module.css';
 const SquareSpace = (props) => {
     return ( 
         <>
-         <div className={props.playerLocation ? styles.Player : styles.SquareSpace}
-         />
+         <div className={props.playerLocation ? styles.Player 
+         : styles.SquareSpace}>
+
+         {props.zone === 1 ? <p>Treasure</p> : <p>M</p>}
+         </div>
          
+
         </>
      );
 }
