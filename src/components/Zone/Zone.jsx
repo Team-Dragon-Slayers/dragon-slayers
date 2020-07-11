@@ -9,7 +9,7 @@ const Zone = (props) => {
         <div className={styles.Zone}>
             {props.playerLocation ?
                 arr.map((el)=>
-                props.playerLocation.zone === el ?
+                props.playerLocation.row === el ?
                 <SquareRow 
                     playerLocation={props.playerLocation}
                 /> :
