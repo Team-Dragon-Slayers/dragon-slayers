@@ -4,6 +4,7 @@
     background-color: blue;
     border: 1px black solid;
     display: inline-block;
+    color: yellow;
 }
 
 .Player {
@@ -12,4 +13,12 @@
     background-color: white;
     border: 1px black solid;
     display: inline-block;
+}
+
+.Monster {
+    width: 40px;
+    height: 40px;
+    background-color: brown;
+    border: 1px black solid;
+    color: yellow;
 }
