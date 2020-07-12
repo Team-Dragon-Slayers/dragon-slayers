@@ -4,8 +4,8 @@ import Gameboard from './components/Gameboard/Gameboard'
 import CardRow from './components/CardRow/CardRow';
 import RollBtn from './components/RollBtn/RollBtn';
 import Message from './components/Message';
-import Battle from './components/Battle';
-import Treasure from './components/Treasure';
+import Battle from './components/Battle/Battle';
+import Treasure from './components/Treasure/Treasure';
 import * as cardAPI from './services/card';
 import * as monsterAPI from './services/monster';
 
@@ -40,6 +40,10 @@ for(let i=1; i<6; i++){
   }
 }
 
+
+  
+
+
 class App extends Component {
 
   state = {
@@ -48,8 +52,35 @@ class App extends Component {
       currentHealth: 10,
       maxHealth: 10,
       attack: 2,
-      defense: 2},
-    deck: [],
+      defense: 2
+    },
+    deck: [        
+      {
+          name: 'Dagger',
+          type: 'Attack',
+          points: 1,
+      },
+      {
+          name:'Sword',
+          type: 'Attack',
+          points: 2
+      },
+      {
+          name: 'Spell of Fireballs',
+          type: 'Attack',
+          points: 3
+      },
+      {
+          name:'Wooden Shield',
+          type: 'Defense',
+          points: 1,
+      },
+      {
+          name: 'Fuzzy Berries',
+          type: 'Healing',
+          points: 1
+      }],
+    battleDeck : [],
     message: "Welcome to Dragon Slayers!",
     monster: {},
     treasure: {},
@@ -70,7 +101,7 @@ class App extends Component {
 
   handleMonsterEncounter = async (zone) => {
     let monster = await monsterAPI.getRandomMonster(zone);
-    let msg = `You've encountered an angry ${monster.name}!`;
+    let msg = `You've encountered an angry monster!`;
     this.setState({message: msg, monster: monster})
     console.log(monster);
   }
@@ -92,6 +123,28 @@ class App extends Component {
     console.log(this.state.deck)
   }
 
+  // getBattleDeck = (battleCards) => {
+  //   console.log(battleCards)
+  // }
+
+  // getBattleCards = async (deck) => {
+  //   let battleCards = await [];
+  //   for (let i=0; i<3; i++){
+  //       let cardNum = Math.floor(Math.random() * deck.length)
+  //       if (battleCards.length === 0) battleCards.push(deck[cardNum])
+  //       else{
+  //           for(let j=0; j<battleCards.length; j++){
+  //               if (deck[cardNum].name === battleCards[j].name ){
+  //                   i--;
+  //                   break;
+  //               } else battleCards.push(deck[cardNum]);
+  //           } 
+  //       }   
+  //   }
+  //   console.log(battleCards)
+  //   return battleCards;
+  // }
+
  
   render() { 
     return ( 
@@ -108,6 +161,9 @@ class App extends Component {
           monster={this.state.monster}
           deck={this.state.deck}
           playerStats={this.state.playerStats}
+          battleDeck={this.state.battleDeck}
+          // getBattleDeck={this.getBattleDeck}
+          // getBattleCards={this.getBattleCards}
         /> : <></>  } 
 
         {boardArr[this.state.playerLocation-1].type === "Treasure" ? 
