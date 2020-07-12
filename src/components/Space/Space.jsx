@@ -1,5 +1,5 @@
 import React from 'react';
-import './Player.css'
+import styles from './Space.module.css';
 
 const color = (typeOfSquare) => {
     let color;
@@ -13,13 +13,17 @@ const color = (typeOfSquare) => {
     return color;
 }
 
-const Player = (props) => {
-    return (
-        <div className="Player"
-        style={{backgroundColor: color(props.type)}}>
-
-        </div>
+const Space = (props) => {
+    return (  
+        <>
+        <div 
+            className={styles.SquareSpace} 
+            style={{backgroundColor: color(props.type)}}
+        ></div>
+        
+       </>
     );
 }
+
  
-export default Player
+export default Space;

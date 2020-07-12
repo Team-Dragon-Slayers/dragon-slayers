@@ -1,69 +1,65 @@
-import React, {useEffect, useState} from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Gameboard from './components/Gameboard/Gameboard'
 import CardRow from './components/CardRow/CardRow';
 import Player from './components/Player/Player';
+import RollBtn from './components/RollBtn/RollBtn';
 
-const App = () => {
+const randomNum = (n) => {
+  return Math.floor(Math.random() * n);
+}
 
-  const [playerLocation, setPlayerLocation] = useState({zone: 1, row: 1, space: 1})
+const typeOfSquare = () => {
+  let type = randomNum(3);
+  if (type === 1){
+      return "Monster";
+  } else if (type ===2) {
+      return "Treasure";
+  } else return "Blank"
+}
 
-  const findTypeOfSquare = () => {
-    let type = Math.floor(Math.random() * 3);
-    if (type === 1){
-        return "Monster";
-    } else if (type ===2) {
-        return "Treasure";
-    } else return "Blank"
+let boardArr = [];
+let count = 1;
+for(let i=1; i<6; i++){
+  for(let j=1; j<4; j++){
+    for(let k=1; k<11; k++){
+      let obj = {
+        id: count,
+        zone: i,
+        row: j,
+        space: k,
+        type: (count%30===0) ? "Boss" : typeOfSquare()
+      }
+      count++;
+      boardArr.push(obj)
+    }
+  }
+}
+
+class App extends Component {
+  // state = { 
+  //   playerLocation: {
+  //     zone: 1,
+  //     row: 1,
+  //     space: 1
+  //   },
+  //   playerLocation2: 1
+  //  }
+
+  state = {
+    playerLocation: 1
   }
 
-  const handlePlayerMovement = () => {
-      let dieRoll = Math.ceil(Math.random() * 6);
-      let newLocation = dieRoll + playerLocation.space;
-      let row = playerLocation.row;
-      let zone = playerLocation.zone;
-      let space = playerLocation.space;
-      if (newLocation > 10){
-        row++;
-        if(row > 5){  // if exiting zone, stay on last space for boss
-          zone++;
-        }
-        space = newLocation-10;
-      }
-      else space += dieRoll;
-      setPlayerLocation({
-        zone, row, space
-      });
-    }
-  
+   handlePlayerMovement = () => {
+    let dieRoll = Math.ceil(Math.random() * 6);
+    this.setState({ playerLocation: this.state.playerLocation + dieRoll})
+    console.log(this.state.playerLocation)
+   }
 
-  useEffect(() => {
-    handlePlayerMovement();
-  }, []);
-
-  // const handlePlayerMovement = () => {
-  //   let dieRoll = Math.ceil(Math.random() * 6);
-  //   let newLocation = dieRoll + playerLocation.space;
-  //   let row = playerLocation.row;
-  //   let zone = playerLocation.zone;
-  //   let space = playerLocation.space;
-  //   if (newLocation > 10){
-  //     row++;
-  //     if(row > 5){  // if exiting zone, stay on last space for boss
-  //       zone++;
-  //     }
-  //     space = newLocation-10;
-  //   }
-  //   else space += dieRoll;
-  //   setPlayerLocation({
-  //     zone: zone, row: row, space: space
-  //   });
-  // }
-  
-
+   //DID NOT USE THIS/////////////////
   //  handlePlayerMovement = (e) => {
-  //   e.preventDefault();
+  //   // e.preventDefault();
   //   let dieRoll = Math.ceil(Math.random() * 6);
   //   let newLocation = dieRoll + this.state.playerLocation.space;
   //   let row = this.state.playerLocation.row;
@@ -78,14 +74,16 @@ const App = () => {
   //   }
   //   else space += dieRoll;
   //   console.log(dieRoll);
+    
   //   this.setState({
   //     playerLocation: {zone: zone, row: row, space: space}
       
   //   });
   //   console.log(this.state)
   // }
+  //////////////////////////
 
-  //  setPlayerLocation = (state,props) => {
+  // handlePlayerMovement= (state,props) => {
   //   let dieRoll = Math.ceil(Math.random() * 6);
   //   let newLocation = dieRoll + this.state.playerLocation.space;
   //   let row = this.state.playerLocation.row;
@@ -112,20 +110,25 @@ const App = () => {
   // }
 
   // this.setState(handlePlayerMovement);
-
+ 
+  render() { 
     return ( 
       <>
-      <button type="button" onClick={() => handlePlayerMovement()}>Roll Die</button>
-      <Gameboard 
-        playerLocation={playerLocation} 
-        findTypeOfSquare={findTypeOfSquare}/>
-      <Player />
+      <RollBtn 
+        handlePlayerMovement={this.handlePlayerMovement}
+      />
+      <Gameboard
+        boardArr={boardArr}
+        playerLocation={this.state.playerLocation}
+      />
       <CardRow />
+      <Player />
 
 
 
       </>
     );
-    }
+  }
+}
  
 export default App;
