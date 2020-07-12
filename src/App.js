@@ -4,6 +4,8 @@ import Gameboard from './components/Gameboard/Gameboard'
 import CardRow from './components/CardRow/CardRow';
 import RollBtn from './components/RollBtn/RollBtn';
 import Message from './components/Message';
+import Battle from './components/Battle';
+import Treasure from './components/Treasure';
 import * as cardAPI from './services/card';
 import * as monsterAPI from './services/monster';
 
@@ -42,8 +44,15 @@ class App extends Component {
 
   state = {
     playerLocation: 1,
+    playerStats: {    
+      currentHealth: 10,
+      maxHealth: 10,
+      attack: 2,
+      defense: 2},
     deck: [],
-    message: "Welcome to Dragon Slayers!"
+    message: "Welcome to Dragon Slayers!",
+    monster: {},
+    treasure: {},
   }
 
   handleEncounter = () => {
@@ -62,7 +71,7 @@ class App extends Component {
   handleMonsterEncounter = async (zone) => {
     let monster = await monsterAPI.getRandomMonster(zone);
     let msg = `You've encountered an angry ${monster.name}!`;
-    this.setState({message: msg})
+    this.setState({message: msg, monster: monster})
     console.log(monster);
   }
 
@@ -77,13 +86,9 @@ class App extends Component {
 
   addCardToDeck = async () => {
     let newCard = await cardAPI.drawCard();
-    let msg = `You've stumbled upon a buried treasure! A new card has been added to your deck:
-    Name: ${newCard.name}
-    Type: ${newCard.type}
-    ${newCard.type} Points: ${newCard.points}
-    `
+    let msg = `You've stumbled upon a buried treasure! A new card has been added to your deck.`
     console.log(newCard)
-    this.setState({ deck: [...this.state.deck, newCard], message: msg})
+    this.setState({ deck: [...this.state.deck, newCard], message: msg, treasure: newCard})
     console.log(this.state.deck)
   }
 
@@ -96,7 +101,20 @@ class App extends Component {
         />    
         <Message 
           message={this.state.message}
-        />  
+        /> 
+        
+        {boardArr[this.state.playerLocation-1].type === "Monster" ? 
+        <Battle 
+          monster={this.state.monster}
+          deck={this.state.deck}
+          playerStats={this.state.playerStats}
+        /> : <></>  } 
+
+        {boardArr[this.state.playerLocation-1].type === "Treasure" ? 
+        <Treasure 
+          treasure={this.state.treasure}
+        /> : <></>  } 
+
         <Gameboard
           boardArr={boardArr}
           playerLocation={this.state.playerLocation}
