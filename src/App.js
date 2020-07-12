@@ -5,6 +5,7 @@ import CardRow from './components/CardRow/CardRow';
 import RollBtn from './components/RollBtn/RollBtn';
 import DrawCardBtn from './components/DrawCardBtn';
 import * as cardAPI from './services/card';
+import * as monsterAPI from './services/monster';
 
 const randomNum = (n) => {
   return Math.floor(Math.random() * n);
@@ -44,13 +45,30 @@ class App extends Component {
     deck: []
   }
 
+  handleEncounter = () => {
+    if (boardArr[this.state.playerLocation].type === "Monster") {
+      console.log("Monster!")
+      this.handleMonsterEncounter(boardArr[this.state.playerLocation].zone)
+    } else if (boardArr[this.state.playerLocation].type === "Treasure") {
+      console.log("Treasure!")
+      this.addCardToDeck();
+    } else {
+      console.log("Blank")
+    }
+  }
+
+  handleMonsterEncounter = async (zone) => {
+    let monster = await monsterAPI.getRandomMonster(zone);
+    console.log(monster);
+  }
+
    handlePlayerMovement = async () => {
     let dieRoll = await Math.ceil(Math.random() * 6);
     if(Math.floor(this.state.playerLocation / 30) !== (Math.floor((this.state.playerLocation + dieRoll) / 30))){
       dieRoll = 30 - (this.state.playerLocation % 30)
     }
     this.setState({ playerLocation: this.state.playerLocation + dieRoll})
-    console.log(this.state.playerLocation)
+    this.handleEncounter();
    }
 
    addCardToDeck = async () => {
