@@ -1,4 +1,4 @@
-const player = {
+export const player = {
     name: '',
     deck: [],
     zone: 1,
