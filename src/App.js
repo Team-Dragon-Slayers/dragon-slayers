@@ -43,6 +43,9 @@ class App extends Component {
 
    handlePlayerMovement = () => {
     let dieRoll = Math.ceil(Math.random() * 6);
+    if(Math.floor(this.state.playerLocation / 30) !== (Math.floor((this.state.playerLocation + dieRoll) / 30))){
+      dieRoll = 30 - (this.state.playerLocation % 30)
+    }
     this.setState({ playerLocation: this.state.playerLocation + dieRoll})
     console.log(this.state.playerLocation)
    }

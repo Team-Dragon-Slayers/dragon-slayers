@@ -1,5 +1,5 @@
 export const cards = [
-    ////// attack cards
+    // attack cards
     {
         name: 'Dagger',
         type: 'Attack',
@@ -40,7 +40,7 @@ export const cards = [
         type: 'Attack',
         points: 4
     },
-    ///// defense cards
+    // defense cards
     {
         name:'Wooden Shield',
         type: 'Defense',
@@ -56,7 +56,7 @@ export const cards = [
         type: 'Defense',
         points: 3
     },
-    /// healing cards
+    // healing cards
     {
         name: 'Fuzzy Berries',
         type: 'Healing',
