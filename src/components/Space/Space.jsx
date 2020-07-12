@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Space.module.css';
+import Player from '../Player/Player';
 
 const color = (typeOfSquare) => {
     let color;
@@ -19,7 +20,13 @@ const Space = (props) => {
         <div 
             className={styles.SquareSpace} 
             style={{backgroundColor: color(props.type)}}
-        ></div>
+        >
+            {props.playerLocation ? 
+            <Player />
+            :
+            <></>
+}              
+        </div>
         
        </>
     );

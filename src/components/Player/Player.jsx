@@ -15,8 +15,8 @@ const color = (typeOfSquare) => {
 
 const Player = (props) => {
     return (
-        <div className="Player"
-        style={{backgroundColor: color(props.type)}}>
+        <div className="Player">
+        {/* style={{backgroundColor: color(props.type)}}> */}
 
         </div>
     );

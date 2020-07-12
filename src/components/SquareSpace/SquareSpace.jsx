@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './SquareSpace.module.css';
+import Player from '../Player/Player';
 
 const color = (typeOfSquare) => {
     let color;
@@ -20,7 +21,11 @@ const SquareSpace = (props) => {
           style={{backgroundColor: color(props.type)}}
          /> */}
         <div className={styles.SquareSpace} style={{backgroundColor: color(props.type)}}>
-
+         {props.playerLocation ? 
+             <Player />
+             :
+             <></>
+            }
         </div>
          
         </>

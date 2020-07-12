@@ -123,7 +123,7 @@ class App extends Component {
         playerLocation={this.state.playerLocation}
       />
       <CardRow />
-      <Player />
+      {/* <Player /> */}
 
 
 

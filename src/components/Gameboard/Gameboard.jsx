@@ -50,13 +50,15 @@ const Gameboard = (props) => {
        <div className={styles.GameBoard}>
             {props.boardArr.map((el) =>
                 props.playerLocation === el.id ?
-                <Player 
+                <Space
                     id={el.id}
                     zone={el.zone}
                     row={el.row}
                     space={el.space}
                     type={el.type} 
-                /> :
+                    playerLocation={props.playerLocation}
+                />
+                :
                 <Space
                     id={el.id}
                     zone={el.zone}
