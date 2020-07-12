@@ -4,7 +4,7 @@ import Gameboard from './components/Gameboard/Gameboard'
 import CardRow from './components/CardRow/CardRow';
 import RollBtn from './components/RollBtn/RollBtn';
 import DrawCardBtn from './components/DrawCardBtn';
-import * as cardAPI from './card.js';
+import * as cardAPI from './services/card';
 
 const randomNum = (n) => {
   return Math.floor(Math.random() * n);
