@@ -23,21 +23,3 @@
     border: 1px black solid;
     color: yellow;
 }
-
-.SquareRow {
-    display: inline-block;
-    border: 1px black solid;
-    width: 420px;
-    height: 45px;
-    background-color: purple;
-    padding-top: 5px;
-}
-
-.Zone {
-    display: inline-block;
-    border: 1px black solid;
-    width: 420px;
-    height: 150px;
-    background-color: red;
-    padding-top: 5px;
-}
