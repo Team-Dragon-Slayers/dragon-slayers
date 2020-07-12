@@ -44,8 +44,8 @@ class App extends Component {
     deck: []
   }
 
-   handlePlayerMovement = () => {
-    let dieRoll = Math.ceil(Math.random() * 6);
+   handlePlayerMovement = async () => {
+    let dieRoll = await Math.ceil(Math.random() * 6);
     if(Math.floor(this.state.playerLocation / 30) !== (Math.floor((this.state.playerLocation + dieRoll) / 30))){
       dieRoll = 30 - (this.state.playerLocation % 30)
     }
