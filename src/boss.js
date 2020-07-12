@@ -65,7 +65,7 @@ export const bosses = {
     },
     8: {
         name: 'Phoenix',
-        zone: 1,
+        zone: 5,
         currentHealth: 4,
         maxHealth: 16,
         attack: 9,
@@ -73,7 +73,7 @@ export const bosses = {
     },
     9: {
         name: 'Dragon',
-        zone: 1,
+        zone: 5,
         currentHealth: 12,
         maxHealth: 12,
         attack: 17,
