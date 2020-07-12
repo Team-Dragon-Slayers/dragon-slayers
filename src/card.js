@@ -77,5 +77,9 @@ export const cards = [
         type: 'Healing',
         points: 3
     }
-
 ]
+
+export const drawCard = () => {
+    let cardNum = Math.floor(Math.random() * cards.length);
+    return cards[cardNum];
+}

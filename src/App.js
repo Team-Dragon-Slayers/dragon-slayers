@@ -3,6 +3,8 @@ import './App.css';
 import Gameboard from './components/Gameboard/Gameboard'
 import CardRow from './components/CardRow/CardRow';
 import RollBtn from './components/RollBtn/RollBtn';
+import DrawCardBtn from './components/DrawCardBtn';
+import * as cardAPI from './card.js';
 
 const randomNum = (n) => {
   return Math.floor(Math.random() * n);
@@ -38,7 +40,8 @@ for(let i=1; i<6; i++){
 class App extends Component {
 
   state = {
-    playerLocation: 1
+    playerLocation: 1,
+    deck: []
   }
 
    handlePlayerMovement = () => {
@@ -47,12 +50,22 @@ class App extends Component {
     console.log(this.state.playerLocation)
    }
 
+   addCardToDeck = async () => {
+     let newCard = await cardAPI.drawCard();
+     console.log(newCard)
+     this.setState({ deck: [...this.state.deck, newCard]})
+     console.log(this.state.deck)
+   }
+
  
   render() { 
     return ( 
       <>
         <RollBtn 
           handlePlayerMovement={this.handlePlayerMovement}
+        />
+        <DrawCardBtn 
+          addCardToDeck={this.addCardToDeck}
         />
       
         <Gameboard
