@@ -117,6 +117,7 @@ class App extends Component {
       <RollBtn 
         handlePlayerMovement={this.handlePlayerMovement}
       />
+      
       <Gameboard
         boardArr={boardArr}
         playerLocation={this.state.playerLocation}
