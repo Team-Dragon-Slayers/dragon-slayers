@@ -166,9 +166,20 @@ export const monsters = {
     }
 }
 
-export const getRandomMonster = (zone) {
-    const numOfMonsters = 20;
-    const randomMonster = Math.floor(Math.random() * numOfMonsters);
-    return monsters[randomMonster]
+export const getRandomMonster = (zone) => {
+    let monsterList = []
+    if (zone === 1) {
+        monsterList = [1, 2, 3, 4]
+    } else if (zone === 2) {
+        monsterList = [5, 6, 7, 8]
+    } else if (zone === 3) {
+        monsterList = [9, 10, 11, 12]
+    } else if (zone === 4) {
+        monsterList = [13, 14, 15, 16]
+    } else {
+        monsterList = [17, 18, 19, 20]
+    }
+    const randomMonster = Math.floor(Math.random() * 4);
+    return monsters[monsterList[randomMonster]]
 }
 
