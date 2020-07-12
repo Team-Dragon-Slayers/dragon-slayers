@@ -87,8 +87,19 @@ export const bosses = {
     
 }
 
-export const getrandomBoss = (zone) {
-    const numOfBosses = 10;
-    const randomBosses = Math.floor(Math.random() * numOfBosses);
-    return bosses[randomBosses]
+export const getRandomBosses = (zone) => {
+    let bossList = []
+    if (zone === 1) {
+        bossList = [1, 2]
+    } else if (zone === 2) {
+        bossList = [3, 4]
+    } else if (zone === 3) {
+        bossList = [5, 6]
+    } else if (zone === 4) {
+        bossList = [7, 8]
+    } else {
+        bossList = [9, 10]
+    }
+    const randomBosses = Math.floor(Math.random() * 2);
+    return bosses[bossList[randomBosses]]
 }
