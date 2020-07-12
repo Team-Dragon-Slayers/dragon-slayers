@@ -87,6 +87,7 @@ export const bosses = {
     
 }
 
+
 export const getRandomBosses = (zone) => {
     let bossList = []
     if (zone === 1) {
@@ -103,3 +104,4 @@ export const getRandomBosses = (zone) => {
     const randomBosses = Math.floor(Math.random() * 2);
     return bosses[bossList[randomBosses]]
 }
+

@@ -125,8 +125,6 @@ class App extends Component {
       <CardRow />
       {/* <Player /> */}
 
-
-
       </>
     );
   }
