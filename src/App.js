@@ -41,6 +41,17 @@ for(let i=1; i<6; i++){
   }
 }
 
+
+let messages = [
+  "You stopped to pick some berries for a while.",
+  "You found a nice spot to stop for a rest.",
+  "You stopped to check the map.",
+  "You got lost while following a butterfly and had to find your way back to the trail.",
+  "You got stuck in some mud.",
+  "You got hungry and stopped to have a snack"
+]
+
+
 class App extends Component {
 
   state = {
@@ -90,10 +101,16 @@ class App extends Component {
     } else if (boardArr[this.state.playerLocation-1].type === "Treasure") {
       console.log("Treasure!")
       this.addCardToDeck();
+    } else if (boardArr[this.state.playerLocation-1].type === "Blank") {
+      this.getRandomMessage();
     } else {
-      this.setState({message: "You found a bench and sat down to rest!"})
-      console.log("Blank")
+      this.setState({message: "Let's slay some dragons!"})
     }
+  }
+
+  getRandomMessage = () => {
+    let message = messages[Math.floor(Math.random() * messages.length)];
+    this.setState({ message: message});
   }
 
   handleMonsterEncounter = async (zone) => {
