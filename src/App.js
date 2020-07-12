@@ -45,7 +45,14 @@ class App extends Component {
       zone: 1,
       row: 1,
       space: 1
-    }
+    },
+    playerLocation2: 1
+   }
+
+   handlePlayerMovement2 = () => {
+    let dieRoll = Math.ceil(Math.random() * 6);
+    this.setState({ playerLocation2: this.state.playerLocation2 + dieRoll})
+    console.log(this.state.playerLocation2)
    }
 
    handlePlayerMovement = (e) => {
@@ -107,11 +114,12 @@ class App extends Component {
 
       {/* <button type="button" onClick={this.handlePlayerMovement}>Roll Die</button> */}
       <RollBtn 
-        handlePlayerMovement={this.handlePlayerMovement}
+        handlePlayerMovement={this.handlePlayerMovement2}
       />
       <Gameboard
         // playerLocation={this.state.playerLocation} 
         boardArr={boardArr}
+        playerLocation2={this.state.playerLocation2}
       />
       <CardRow />
       <Player />

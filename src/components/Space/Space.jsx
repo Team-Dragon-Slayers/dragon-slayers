@@ -7,6 +7,8 @@ const color = (typeOfSquare) => {
         color = "brown";
     } else if (typeOfSquare === "Treasure"){
         color = "gold";
+    } else if (typeOfSquare === "Boss") {
+        color ="purple";
     } else color = "blue";
     return color;
 }
@@ -16,8 +18,10 @@ const Space = (props) => {
         <>
        <div 
         className={styles.SquareSpace} 
-        style={{backgroundColor: color(props.type)}}>
-
+        style={{backgroundColor: color(props.type)}}
+        
+        >
+        
        </div>
         
        </>

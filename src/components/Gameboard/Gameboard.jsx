@@ -4,7 +4,7 @@ import Zone from '../Zone/Zone';
 import Player from '../Player/Player';
 import Space from '../Space/Space';
 
-const zones=[1,2,3,4,5];
+// const zones=[1,2,3,4,5];
 
 // const Gameboard = (props) => {
 //     return ( 
@@ -39,14 +39,31 @@ const zones=[1,2,3,4,5];
 const Gameboard = (props) => {
     return ( 
        <div className={styles.GameBoard}>
-            {props.boardArr.map((el) =>
+            {/* {props.boardArr.map((el) =>
                 <Space
-                id={el.id}
-                zone={el.zone}
-                row={el.row}
-                space={el.space}
-                type={el.type} 
+                    id={el.id}
+                    zone={el.zone}
+                    row={el.row}
+                    space={el.space}
+                    type={el.type} 
                 />
+            )} */}
+            {props.boardArr.map((el) =>
+                props.playerLocation2 === el.id ?
+                <Player 
+                    id={el.id}
+                    zone={el.zone}
+                    row={el.row}
+                    space={el.space}
+                    type={el.type} 
+                /> :
+                <Space
+                    id={el.id}
+                    zone={el.zone}
+                    row={el.row}
+                    space={el.space}
+                    type={el.type} 
+            />
             )}
         </div>
     

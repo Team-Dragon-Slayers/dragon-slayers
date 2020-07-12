@@ -1,6 +1,6 @@
 .SquareSpace {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background-color: blue;
     border: 1px black solid;
     display: inline-block;
@@ -8,8 +8,8 @@
 }
 
 .Player {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background-color: white;
     border: 1px black solid;
     display: inline-block;
@@ -17,9 +17,27 @@
 }
 
 .Monster {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background-color: brown;
     border: 1px black solid;
     color: yellow;
+}
+
+.SquareRow {
+    display: inline-block;
+    border: 1px black solid;
+    width: 420px;
+    height: 45px;
+    background-color: purple;
+    padding-top: 5px;
+}
+
+.Zone {
+    display: inline-block;
+    border: 1px black solid;
+    width: 420px;
+    height: 150px;
+    background-color: red;
+    padding-top: 5px;
 }
