@@ -8,6 +8,7 @@ import Battle from './components/Battle/Battle';
 import Treasure from './components/Treasure/Treasure';
 import * as cardAPI from './services/card';
 import * as monsterAPI from './services/monster';
+import * as battleAPI from './services/battle';
 
 const randomNum = (n) => {
   return Math.floor(Math.random() * n);
@@ -39,10 +40,6 @@ for(let i=1; i<6; i++){
     }
   }
 }
-
-
-  
-
 
 class App extends Component {
 
@@ -102,8 +99,11 @@ class App extends Component {
   handleMonsterEncounter = async (zone) => {
     let monster = await monsterAPI.getRandomMonster(zone);
     let msg = `You've encountered an angry monster!`;
-    this.setState({message: msg, monster: monster})
+    let newDeck = await this.buildBattleDeck(this.state.deck);
+    this.setState({message: msg, monster: monster, battleDeck: newDeck})
     console.log(monster);
+
+    console.log(this.state.battleDeck)
   }
 
   handlePlayerMovement = async () => {
@@ -123,27 +123,12 @@ class App extends Component {
     console.log(this.state.deck)
   }
 
-  // getBattleDeck = (battleCards) => {
-  //   console.log(battleCards)
-  // }
-
-  // getBattleCards = async (deck) => {
-  //   let battleCards = await [];
-  //   for (let i=0; i<3; i++){
-  //       let cardNum = Math.floor(Math.random() * deck.length)
-  //       if (battleCards.length === 0) battleCards.push(deck[cardNum])
-  //       else{
-  //           for(let j=0; j<battleCards.length; j++){
-  //               if (deck[cardNum].name === battleCards[j].name ){
-  //                   i--;
-  //                   break;
-  //               } else battleCards.push(deck[cardNum]);
-  //           } 
-  //       }   
-  //   }
-  //   console.log(battleCards)
-  //   return battleCards;
-  // }
+  buildBattleDeck = async (playerDeck) => {
+    console.log(playerDeck);
+    let battleDeck = await battleAPI.getBattleCards(playerDeck);
+    console.log(`battle deck from buildbattledeck func in app.js ${battleDeck}`)
+    return battleDeck;
+  }
 
  
   render() { 
@@ -162,9 +147,13 @@ class App extends Component {
           deck={this.state.deck}
           playerStats={this.state.playerStats}
           battleDeck={this.state.battleDeck}
+          // buildBattleDeck={this.buildBattleDeck}
           // getBattleDeck={this.getBattleDeck}
           // getBattleCards={this.getBattleCards}
         /> : <></>  } 
+
+    {/* {boardArr[this.state.playerLocation-1].type === "Monster" ? this.buildBattleDeck() : <></> } */}
+
 
         {boardArr[this.state.playerLocation-1].type === "Treasure" ? 
         <Treasure 
