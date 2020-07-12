@@ -1,6 +1,6 @@
 export const monsters = {
     //Zone 1
-    0: {
+    1: {
         name: 'Troll',
         zone: 1,
         currentHealth: 4,
