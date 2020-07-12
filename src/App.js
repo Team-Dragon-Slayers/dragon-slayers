@@ -3,6 +3,7 @@ import './App.css';
 import Gameboard from './components/Gameboard/Gameboard'
 import CardRow from './components/CardRow/CardRow';
 import RollBtn from './components/RollBtn/RollBtn';
+import Message from './components/Message';
 import * as cardAPI from './services/card';
 import * as monsterAPI from './services/monster';
 
@@ -41,7 +42,8 @@ class App extends Component {
 
   state = {
     playerLocation: 1,
-    deck: []
+    deck: [],
+    message: "Welcome to Dragon Slayers!"
   }
 
   handleEncounter = () => {
@@ -52,12 +54,15 @@ class App extends Component {
       console.log("Treasure!")
       this.addCardToDeck();
     } else {
+      this.setState({message: "You found a bench and sat down to rest!"})
       console.log("Blank")
     }
   }
 
   handleMonsterEncounter = async (zone) => {
     let monster = await monsterAPI.getRandomMonster(zone);
+    let msg = `You've encountered an angry ${monster.name}!`;
+    this.setState({message: msg})
     console.log(monster);
   }
 
@@ -72,8 +77,13 @@ class App extends Component {
 
   addCardToDeck = async () => {
     let newCard = await cardAPI.drawCard();
+    let msg = `You've stumbled upon a buried treasure! A new card has been added to your deck:
+    Name: ${newCard.name}
+    Type: ${newCard.type}
+    ${newCard.type} Points: ${newCard.points}
+    `
     console.log(newCard)
-    this.setState({ deck: [...this.state.deck, newCard]})
+    this.setState({ deck: [...this.state.deck, newCard], message: msg})
     console.log(this.state.deck)
   }
 
@@ -83,7 +93,10 @@ class App extends Component {
       <>
         <RollBtn 
           handlePlayerMovement={this.handlePlayerMovement}
-        />      
+        />    
+        <Message 
+          message={this.state.message}
+        />  
         <Gameboard
           boardArr={boardArr}
           playerLocation={this.state.playerLocation}
