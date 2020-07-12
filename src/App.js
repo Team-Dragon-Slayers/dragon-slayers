@@ -3,7 +3,6 @@ import './App.css';
 import Gameboard from './components/Gameboard/Gameboard'
 import CardRow from './components/CardRow/CardRow';
 import RollBtn from './components/RollBtn/RollBtn';
-import DrawCardBtn from './components/DrawCardBtn';
 import * as cardAPI from './services/card';
 import * as monsterAPI from './services/monster';
 
@@ -46,10 +45,10 @@ class App extends Component {
   }
 
   handleEncounter = () => {
-    if (boardArr[this.state.playerLocation].type === "Monster") {
+    if (boardArr[this.state.playerLocation-1].type === "Monster") {
       console.log("Monster!")
-      this.handleMonsterEncounter(boardArr[this.state.playerLocation].zone)
-    } else if (boardArr[this.state.playerLocation].type === "Treasure") {
+      this.handleMonsterEncounter(boardArr[this.state.playerLocation-1].zone)
+    } else if (boardArr[this.state.playerLocation-1].type === "Treasure") {
       console.log("Treasure!")
       this.addCardToDeck();
     } else {
@@ -62,21 +61,21 @@ class App extends Component {
     console.log(monster);
   }
 
-   handlePlayerMovement = async () => {
-    let dieRoll = await Math.ceil(Math.random() * 6);
-    if(Math.floor(this.state.playerLocation / 30) !== (Math.floor((this.state.playerLocation + dieRoll) / 30))){
-      dieRoll = 30 - (this.state.playerLocation % 30)
-    }
-    this.setState({ playerLocation: this.state.playerLocation + dieRoll})
-    this.handleEncounter();
-   }
+  handlePlayerMovement = async () => {
+  let dieRoll = await Math.ceil(Math.random() * 6);
+  if(Math.floor(this.state.playerLocation / 30) !== (Math.floor((this.state.playerLocation + dieRoll) / 30))){
+    dieRoll = 30 - (this.state.playerLocation % 30)
+  }
+  this.setState({ playerLocation: this.state.playerLocation + dieRoll})
+  this.handleEncounter();
+  }
 
-   addCardToDeck = async () => {
-     let newCard = await cardAPI.drawCard();
-     console.log(newCard)
-     this.setState({ deck: [...this.state.deck, newCard]})
-     console.log(this.state.deck)
-   }
+  addCardToDeck = async () => {
+    let newCard = await cardAPI.drawCard();
+    console.log(newCard)
+    this.setState({ deck: [...this.state.deck, newCard]})
+    console.log(this.state.deck)
+  }
 
  
   render() { 
@@ -84,11 +83,7 @@ class App extends Component {
       <>
         <RollBtn 
           handlePlayerMovement={this.handlePlayerMovement}
-        />
-        <DrawCardBtn 
-          addCardToDeck={this.addCardToDeck}
-        />
-      
+        />      
         <Gameboard
           boardArr={boardArr}
           playerLocation={this.state.playerLocation}
