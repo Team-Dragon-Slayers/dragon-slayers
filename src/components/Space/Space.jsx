@@ -16,13 +16,10 @@ const color = (typeOfSquare) => {
 const Space = (props) => {
     return (  
         <>
-       <div 
-        className={styles.SquareSpace} 
-        style={{backgroundColor: color(props.type)}}
-        
-        >
-        
-       </div>
+        <div 
+            className={styles.SquareSpace} 
+            style={{backgroundColor: color(props.type)}}
+        ></div>
         
        </>
     );

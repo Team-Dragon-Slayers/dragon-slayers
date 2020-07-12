@@ -39,17 +39,8 @@ import Space from '../Space/Space';
 const Gameboard = (props) => {
     return ( 
        <div className={styles.GameBoard}>
-            {/* {props.boardArr.map((el) =>
-                <Space
-                    id={el.id}
-                    zone={el.zone}
-                    row={el.row}
-                    space={el.space}
-                    type={el.type} 
-                />
-            )} */}
             {props.boardArr.map((el) =>
-                props.playerLocation2 === el.id ?
+                props.playerLocation === el.id ?
                 <Player 
                     id={el.id}
                     zone={el.zone}
@@ -71,21 +62,3 @@ const Gameboard = (props) => {
 }
  
 export default Gameboard;
-
-// const GameBoard = (props) => {
-//     return ( 
-//         <div className={styles.GameBoard}>  
-//         {props.boardArr.map((el) =>{
-//             <Space 
-//                 id={props.boardArr[el].id}
-//                 zone={props.boardArr[el].zone}
-//                 row={props.boardArr[el].row}
-//                 space={props.boardArr[el].space}
-//                 type={props.boardArr[el].type}
-//             />
-//         })}
-//         </div>
-//     );
-// }
- 
-// export default GameBoard;

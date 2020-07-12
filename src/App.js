@@ -6,11 +6,10 @@ import CardRow from './components/CardRow/CardRow';
 import Player from './components/Player/Player';
 import RollBtn from './components/RollBtn/RollBtn';
 
-
-
 const randomNum = (n) => {
   return Math.floor(Math.random() * n);
 }
+
 const typeOfSquare = () => {
   let type = randomNum(3);
   if (type === 1){
@@ -38,46 +37,51 @@ for(let i=1; i<6; i++){
   }
 }
 
-
 class App extends Component {
-  state = { 
-    playerLocation: {
-      zone: 1,
-      row: 1,
-      space: 1
-    },
-    playerLocation2: 1
-   }
+  // state = { 
+  //   playerLocation: {
+  //     zone: 1,
+  //     row: 1,
+  //     space: 1
+  //   },
+  //   playerLocation2: 1
+  //  }
 
-   handlePlayerMovement2 = () => {
-    let dieRoll = Math.ceil(Math.random() * 6);
-    this.setState({ playerLocation2: this.state.playerLocation2 + dieRoll})
-    console.log(this.state.playerLocation2)
-   }
-
-   handlePlayerMovement = (e) => {
-    // e.preventDefault();
-    let dieRoll = Math.ceil(Math.random() * 6);
-    let newLocation = dieRoll + this.state.playerLocation.space;
-    let row = this.state.playerLocation.row;
-    let zone = this.state.playerLocation.zone;
-    let space = this.state.playerLocation.space;
-    if (newLocation > 10){
-      row++;
-      if(row > 5){  // if exiting zone, stay on last space for boss
-        zone++;
-      }
-      space = newLocation-10;
-    }
-    else space += dieRoll;
-    console.log(dieRoll);
-    
-    this.setState({
-      playerLocation: {zone: zone, row: row, space: space}
-      
-    });
-    console.log(this.state)
+  state = {
+    playerLocation: 1
   }
+
+   handlePlayerMovement = () => {
+    let dieRoll = Math.ceil(Math.random() * 6);
+    this.setState({ playerLocation: this.state.playerLocation + dieRoll})
+    console.log(this.state.playerLocation)
+   }
+
+   //DID NOT USE THIS/////////////////
+  //  handlePlayerMovement = (e) => {
+  //   // e.preventDefault();
+  //   let dieRoll = Math.ceil(Math.random() * 6);
+  //   let newLocation = dieRoll + this.state.playerLocation.space;
+  //   let row = this.state.playerLocation.row;
+  //   let zone = this.state.playerLocation.zone;
+  //   let space = this.state.playerLocation.space;
+  //   if (newLocation > 10){
+  //     row++;
+  //     if(row > 5){  // if exiting zone, stay on last space for boss
+  //       zone++;
+  //     }
+  //     space = newLocation-10;
+  //   }
+  //   else space += dieRoll;
+  //   console.log(dieRoll);
+    
+  //   this.setState({
+  //     playerLocation: {zone: zone, row: row, space: space}
+      
+  //   });
+  //   console.log(this.state)
+  // }
+  //////////////////////////
 
   // handlePlayerMovement= (state,props) => {
   //   let dieRoll = Math.ceil(Math.random() * 6);
@@ -107,19 +111,15 @@ class App extends Component {
 
   // this.setState(handlePlayerMovement);
  
-  
   render() { 
     return ( 
       <>
-
-      {/* <button type="button" onClick={this.handlePlayerMovement}>Roll Die</button> */}
       <RollBtn 
-        handlePlayerMovement={this.handlePlayerMovement2}
+        handlePlayerMovement={this.handlePlayerMovement}
       />
       <Gameboard
-        // playerLocation={this.state.playerLocation} 
         boardArr={boardArr}
-        playerLocation2={this.state.playerLocation2}
+        playerLocation={this.state.playerLocation}
       />
       <CardRow />
       <Player />
