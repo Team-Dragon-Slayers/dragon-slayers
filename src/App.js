@@ -5,6 +5,7 @@ import RollBtn from './components/RollBtn/RollBtn';
 import Message from './components/Message';
 import Battle from './components/Battle/Battle';
 import Treasure from './components/Treasure/Treasure';
+import Footer from './components/Footer/Footer';
 import * as cardAPI from './services/card';
 import * as monsterAPI from './services/monster';
 import * as bossAPI from './services/boss';
@@ -284,6 +285,7 @@ class App extends Component {
         <Treasure 
           treasure={this.state.treasure}
         /> : <></>  } 
+      <Footer />
       </>
     );
   }
