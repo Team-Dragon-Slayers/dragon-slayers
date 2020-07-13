@@ -21,7 +21,8 @@ As participation in Mintbean's hackathon, our team has developed a full-stack ME
 React.js, Express.js, Node.js, MongoDB/Mongoose, JavaScript, HTML, CSS, Socket.io
 
 ## Credits:
-- Card Deck Image: nicepng.com: https://www.nicepng.com/maxp/u2q8a9a9y3u2u2q8/
+- Font by Chequered Ink @ https://www.fontspace.com/ancient-modern-tales-font-f28700
+- Card Deck Image by nicepng.com @ https://www.nicepng.com/maxp/u2q8a9a9y3u2u2q8/
 
 ## Next Steps:
 - Move data to MongoDB and build into a full-stack MERN app
