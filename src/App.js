@@ -224,8 +224,9 @@ class App extends Component {
   }
 
   handleBattleWin = () => {
-    let stats = ["maxHealth", "attack", "defense"]
-    let upgrade = stats[Math.floor(Math.random() * 3)-1]
+    let stats = ["Max Health", "Attack", "Defense"]
+    let upgrade = stats[Math.floor(Math.random() * 3)]
+    console.log(upgrade)
     let upgradeAmt = Math.ceil(this.state.playerLocation / 30);
     let msg = `You win! You feel yourself growing stronger.  Your ${upgrade} increases by ${upgradeAmt} points!`
     if (upgrade === "maxHealth") {
