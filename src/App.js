@@ -178,7 +178,7 @@ class App extends Component {
     }
   }
 
-  handleMonsterCounterAttack = (bonusDefense) => {
+  handleMonsterCounterAttack = async (bonusDefense) => {
     let currentMonster = this.state.monster;
     let monsterAttack = currentMonster.attack;
     let player = this.state.playerStats;
@@ -189,9 +189,10 @@ class App extends Component {
       playerHealth = player.currentHealth + player.defense - monsterAttack;
     }
     if (playerHealth <= 0) return this.handleBattleLose();
+    let newBattleDeck = await this.buildBattleDeck(this.state.deck)
+    this.setState({battleDeck: newBattleDeck});
+    console.log(JSON.stringify(newBattleDeck));
     if (playerHealth < this.state.playerStats.currentHealth) {
-
-      this.buildBattleDeck(this.state.deck);
       this.setState(prevState => {
         let playerStats = Object.assign({}, prevState.playerStats);
         playerStats.currentHealth = playerHealth;

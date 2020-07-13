@@ -17,15 +17,21 @@ const Battle = (props) => {
             <p>Defense Points:  {props.playerStats.defense} </p>
 
             <h2>Battle Deck</h2>
-        
-            {props.battleDeck.map((el, idx) => 
-            <button key={idx} onClick={() => props.handleBattle(el)}>
-                <p>{el.name}</p>
+            <div className="BattleDeck">
+
+            <button className="Card" id="Deck" disabled={true}></button>
+            {props.battleDeck ?
+            props.battleDeck.map((el, idx) => 
+            <button className="Card" key={idx} onClick={() => props.handleBattle(el)}>
+                <p className="Card-Title">{el.name}</p>
                 <p>{el.type}</p>
                 <p>{el.points}</p>
             </button>
-
-            )}
+            ) :
+            <></>
+            }
+            </div>
+            
         </>
         :
         <p>The Battle is over!</p>
