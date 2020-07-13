@@ -3,7 +3,7 @@
 ## Introduction:
 As participation in Mintbean's hackathon, our team has developed a full-stack MERN app that is a multiplayer game. Players must travel across the board defeating monsters and bosses and make it to the end of the board first!
 
-[Mintbean Hackthon](https://sites.google.com/mintbean.io/2020-07-10-multiplayer-hackath/home?authuser=2)
+[Mintbean Multiplayer Hackthon](https://sites.google.com/mintbean.io/2020-07-10-multiplayer-hackath/home?authuser=2)
 
 ## Check out the App:
 [Play Dragon Slayers!](https://dragon-slayers.herokuapp.com/) 
