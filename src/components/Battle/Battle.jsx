@@ -16,11 +16,12 @@ const Battle = (props) => {
             <h2>Battle Deck</h2>
         
             {props.battleDeck.map((el, idx) => 
-            <button onClick={() => props.handleBattle(el)}>
+            <button key={idx} onClick={() => props.handleBattle(el)}>
                 <p>{el.name}</p>
                 <p>{el.type}</p>
                 <p>{el.points}</p>
             </button>
+
             )}
             
 
