@@ -3,3 +3,24 @@
     border: 1px solid black;
     margin: auto;
 }
+
+.Card {
+    width: 120px;
+    height: 150px;
+}
+
+.Card-Title {
+    font-weight: 600;
+}
+
+#Deck {
+    background-color: orange;
+    margin-right: 10px;
+}
+
+.BattleDeck {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 5px;
+}
