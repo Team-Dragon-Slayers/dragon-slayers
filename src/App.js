@@ -152,7 +152,7 @@ class App extends Component {
     let playerStats = this.state.playerStats;
     if (card.type === "Attack") {
       let monsterHealth = currentMonster.currentHealth - (playerStats.attack + card.points - currentMonster.defense);
-      this.handleMonsterCounterAttack(0);
+      if (monsterHealth > 0) this.handleMonsterCounterAttack(0);
       this.setState(prevState => {
         let monster = Object.assign({}, prevState.monster);
         monster.currentHealth = monsterHealth;
