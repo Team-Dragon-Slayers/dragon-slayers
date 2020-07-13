@@ -1,0 +1,23 @@
+.footer {
+    border: black solid 1px;
+    display: flex;
+    flex-direction: row;
+    font-size: x-small;
+    margin-top: 100px;
+    padding-bottom: 3px;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.footer-links {
+    text-align: center;
+    display: block;
+    width: 40%;
+}
+
+.footer-info {
+    padding-top: 5px;
+    text-align: center;
+    display: block;
+    width: 30%;
+}
