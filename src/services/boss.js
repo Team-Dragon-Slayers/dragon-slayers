@@ -5,8 +5,8 @@ export const bosses = {
         zone: 1,
         currentHealth: 7,
         maxHealth: 7,
-        attack: 3,
-        defense: 6
+        attack: 5,
+        defense: 4
     },
     2: {
         name: 'Banshee',
@@ -30,8 +30,8 @@ export const bosses = {
         zone: 2,
         currentHealth: 10,
         maxHealth: 10,
-        attack: 4,
-        defense: 7
+        attack: 5,
+        defense: 6
     },
     //zone 3
     5: {
@@ -64,8 +64,8 @@ export const bosses = {
         zone: 4,
         currentHealth: 15,
         maxHealth: 15,
-        attack: 7,
-        defense: 9
+        attack: 8,
+        defense: 8
     },
     //zone 5
     9: {
@@ -73,8 +73,8 @@ export const bosses = {
         zone: 5,
         currentHealth: 16,
         maxHealth: 16,
-        attack: 9,
-        defense: 12
+        attack: 11,
+        defense: 10
     },
     10: {
         name: 'Dragon',

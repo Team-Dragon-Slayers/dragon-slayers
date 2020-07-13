@@ -40,6 +40,11 @@ export const cards = [
         type: 'Attack',
         points: 4
     },
+    {
+        name: 'Staff of Unparalleled Carnage',
+        type: 'Attack',
+        points: 7
+    },
     // defense cards
     {
         name:'Wooden Shield',
@@ -76,6 +81,16 @@ export const cards = [
         name: 'Barrel of Mead',
         type: 'Healing',
         points: 3
+    },
+    {
+        name: 'Gem of the Divine',
+        type: 'Healing',
+        points: 4
+    },
+    {
+        name: 'Nectar of Eternal Life',
+        type: 'Healing',
+        points: 5
     }
 ]
 
