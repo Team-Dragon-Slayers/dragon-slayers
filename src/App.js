@@ -157,11 +157,13 @@ class App extends Component {
       } else {
         this.handleMonsterCounterAttack(0);
       }
-      this.setState(prevState => {
-        let monster = Object.assign({}, prevState.monster);
-        monster.currentHealth = monsterHealth;
-        return { monster }
-      });
+      if (monsterHealth <= currentMonster.currentHealth) {
+        this.setState(prevState => {
+          let monster = Object.assign({}, prevState.monster);
+          monster.currentHealth = monsterHealth;
+          return { monster }
+        });
+      }
     } else if (card.type === "Healing") {
       let playerHealth = playerStats.currentHealth + card.points
       this.handleMonsterCounterAttack(0);
@@ -186,20 +188,65 @@ class App extends Component {
       playerHealth = player.currentHealth + player.defense - monsterAttack;
     }
     if (playerHealth <= 0) return this.handleBattleLose();
+    if (playerHealth < this.state.playerStats.currentHealth) {
+
+      this.buildBattleDeck(this.state.deck);
       this.setState(prevState => {
         let playerStats = Object.assign({}, prevState.playerStats);
         playerStats.currentHealth = playerHealth;
         return { playerStats }
       });
-      this.buildBattleDeck(this.state.deck);
+    }
   }
 
   handleBattleLose = () => {
-    console.log("LOSE")
+    let newHealth = this.state.playerStats.maxHealth;
+    let zone = boardArr[this.state.playerLocation-1].zone
+    let newLocation;
+    if (zone === 1) {
+      newLocation = 1;
+    } else if (zone === 2) {
+      newLocation = 31;
+    } else if (zone === 3) {
+      newLocation = 61;
+    } else if (zone === 4) {
+      newLocation = 91;
+    } else {
+      newLocation = 121;
+    }
+    this.setState({message: "You lost the battle! You retreat to rethink your attack"})
+    this.setState({playerLocation: newLocation })
+    this.setState(prevState => {
+      let playerStats = Object.assign({}, prevState.playerStats);
+      playerStats.currentHealth = newHealth;
+      return { playerStats }
+    });
   }
 
   handleBattleWin = () => {
-    console.log("WIN")
+    let stats = ["maxHealth", "attack", "defense"]
+    let upgrade = stats[Math.floor(Math.random() * 3)-1]
+    let upgradeAmt = Math.ceil(this.state.playerLocation / 30);
+    let msg = `You win! You feel yourself growing stronger.  Your ${upgrade} increases by ${upgradeAmt} points!`
+    if (upgrade === "maxHealth") {
+      this.setState(prevState => {
+        let playerStats = Object.assign({}, prevState.playerStats);
+        playerStats.maxHealth += upgradeAmt;
+        return { playerStats, message: msg }
+    });
+    } else if (upgrade === "attack") {
+      this.setState(prevState => {
+        let playerStats = Object.assign({}, prevState.playerStats);
+        playerStats.attack += upgradeAmt;
+        return { playerStats, message: msg }
+    });
+    } else {
+      this.setState(prevState => {
+        let playerStats = Object.assign({}, prevState.playerStats);
+        playerStats.defense += upgradeAmt;
+        return { playerStats, message: msg }
+    });
+    }
   }
  
   render() { 
