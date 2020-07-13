@@ -228,16 +228,17 @@ class App extends Component {
   handleBattleWin = () => {
     let stats = ["Max Health", "Attack", "Defense"]
     let upgrade = stats[Math.floor(Math.random() * 3)]
-    console.log(upgrade)
     let upgradeAmt = Math.ceil(this.state.playerLocation / 30);
-    let msg = `You win! You feel yourself growing stronger.  Your ${upgrade} increases by ${upgradeAmt} points!`
-    if (upgrade === "maxHealth") {
+    let msg = `You win! You feel yourself growing stronger.  Your ${upgrade} increases by ${upgradeAmt} points!`;
+    if (upgrade === "Max Health") {
+      let maxHealth = this.state.playerStats.maxHealth + upgradeAmt;
       this.setState(prevState => {
         let playerStats = Object.assign({}, prevState.playerStats);
-        playerStats.maxHealth += upgradeAmt;
+        playerStats.maxHealth = maxHealth;
+        playerStats.currentHealth = maxHealth;
         return { playerStats, message: msg, inBattle: false }
     });
-    } else if (upgrade === "attack") {
+    } else if (upgrade === "Attack") {
       this.setState(prevState => {
         let playerStats = Object.assign({}, prevState.playerStats);
         playerStats.attack += upgradeAmt;
