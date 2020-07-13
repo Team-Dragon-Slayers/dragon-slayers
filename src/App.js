@@ -152,7 +152,11 @@ class App extends Component {
     let playerStats = this.state.playerStats;
     if (card.type === "Attack") {
       let monsterHealth = currentMonster.currentHealth - (playerStats.attack + card.points - currentMonster.defense);
-      if (monsterHealth > 0) this.handleMonsterCounterAttack(0);
+      if (monsterHealth <= 0)  {
+        return this.handleBattleWin();
+      } else {
+        this.handleMonsterCounterAttack(0);
+      }
       this.setState(prevState => {
         let monster = Object.assign({}, prevState.monster);
         monster.currentHealth = monsterHealth;
@@ -171,16 +175,17 @@ class App extends Component {
     }
   }
 
-  handleMonsterCounterAttack = (defense) => {
+  handleMonsterCounterAttack = (bonusDefense) => {
     let currentMonster = this.state.monster;
     let monsterAttack = currentMonster.attack;
     let player = this.state.playerStats;
     let playerHealth;
-    if (defense) {
-      playerHealth = player.currentHealth + defense - monsterAttack;
+    if (bonusDefense) {
+      playerHealth = player.currentHealth + bonusDefense + player.defense - monsterAttack;
     } else {
-      playerHealth = player.currentHealth - monsterAttack;
+      playerHealth = player.currentHealth + player.defense - monsterAttack;
     }
+    if (playerHealth <= 0) return this.handleBattleLose();
       this.setState(prevState => {
         let playerStats = Object.assign({}, prevState.playerStats);
         playerStats.currentHealth = playerHealth;
@@ -189,6 +194,13 @@ class App extends Component {
       this.buildBattleDeck(this.state.deck);
   }
 
+  handleBattleLose = () => {
+    console.log("LOSE")
+  }
+
+  handleBattleWin = () => {
+    console.log("WIN")
+  }
  
   render() { 
     return ( 
