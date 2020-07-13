@@ -253,13 +253,18 @@ class App extends Component {
   render() { 
     return ( 
       <>
-        <RollBtn 
-          handlePlayerMovement={this.handlePlayerMovement}
-        />    
         <Message 
           message={this.state.message}
         /> 
+        <RollBtn 
+          handlePlayerMovement={this.handlePlayerMovement}
+        />    
         
+        <Gameboard
+          boardArr={boardArr}
+          playerLocation={this.state.playerLocation}
+        />
+
         {boardArr[this.state.playerLocation-1].type === "Monster" || boardArr[this.state.playerLocation-1].type === "Boss" ? 
         <Battle 
           monster={this.state.monster}
@@ -274,10 +279,6 @@ class App extends Component {
           treasure={this.state.treasure}
         /> : <></>  } 
 
-        <Gameboard
-          boardArr={boardArr}
-          playerLocation={this.state.playerLocation}
-        />
         <CardRow />
       </>
     );

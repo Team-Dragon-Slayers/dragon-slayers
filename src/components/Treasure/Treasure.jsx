@@ -1,8 +1,9 @@
 import React from 'react';
+import './Treasure.css'
 
 const Treasure = (props) => {
     return (  
-        <div>
+        <div className="Treasure">
             <p>Name: {props.treasure.name}</p>
             <p>Type: {props.treasure.type}</p>
             <p>{props.treasure.type} Points: {props.treasure.points}</p>
