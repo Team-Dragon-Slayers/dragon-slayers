@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
 import Gameboard from './components/Gameboard/Gameboard'
-import CardRow from './components/CardRow/CardRow';
 import RollBtn from './components/RollBtn/RollBtn';
 import Message from './components/Message';
 import Battle from './components/Battle/Battle';
@@ -284,8 +283,6 @@ class App extends Component {
         <Treasure 
           treasure={this.state.treasure}
         /> : <></>  } 
-
-        <CardRow />
       </>
     );
   }
