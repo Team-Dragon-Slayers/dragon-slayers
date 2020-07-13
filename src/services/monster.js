@@ -69,100 +69,100 @@ export const monsters = {
     9: {
         name: 'Black Viper',
         zone: 3,
-        currentHealth: 9,
-        maxHealth: 9,
-        attack: 7,
-        defense: 4
+        currentHealth: 10,
+        maxHealth: 10,
+        attack: 8,
+        defense: 5
     },
     10: {
         name: 'Ogre',
         zone: 3,
-        currentHealth: 8,
-        maxHealth: 8,
-        attack: 5,
-        defense: 8
+        currentHealth: 9,
+        maxHealth: 9,
+        attack: 6,
+        defense: 9
     },
     11: {
         name: 'Psychic Grey Ooze',
         zone: 3,
-        currentHealth: 6,
-        maxHealth: 6,
-        attack: 10,
-        defense: 4 
+        currentHealth: 7,
+        maxHealth: 7,
+        attack: 11,
+        defense: 5
     },
     12: {
         name: 'Basilisk',
         zone: 3,
-        currentHealth: 7,
-        maxHealth: 7,
-        attack: 8,
-        defense: 5
+        currentHealth: 8,
+        maxHealth: 8,
+        attack: 9,
+        defense: 6
     },
     // Zone 4
     13: {
         name: 'Swarm of Undead Snakes',
         zone: 4,
-        currentHealth: 10,
-        maxHealth: 10,
-        attack: 10,
-        defense: 5
+        currentHealth: 12,
+        maxHealth: 12,
+        attack: 12,
+        defense: 7
     },
     14: {
         name: 'Shadow Demon',
         zone: 4,
-        currentHealth: 8,
-        maxHealth: 8,
-        attack: 10,
-        defense: 7
+        currentHealth: 10,
+        maxHealth: 10,
+        attack: 12,
+        defense: 8
     },
     15: {
         name: 'Golem',
         zone: 4,
-        currentHealth: 12,
-        maxHealth: 12,
-        attack: 6,
-        defense: 7
+        currentHealth: 14,
+        maxHealth: 14,
+        attack: 8,
+        defense: 9
     },
     16: {
         name: 'Cyclops',
         zone: 4,
-        currentHealth: 11,
-        maxHealth: 11,
-        attack: 7,
-        defense: 7
+        currentHealth: 13,
+        maxHealth: 13,
+        attack: 9,
+        defense: 9
     },
     //Zone 5
     17: {
         name: 'Kraken',
         zone: 5,
-        currentHealth: 13,
-        maxHealth: 13,
-        attack: 10,
-        defense: 7
+        currentHealth: 17,
+        maxHealth: 17,
+        attack: 13,
+        defense: 10
     },
     18: {
         name: 'Giant Slug',
         zone: 5,
-        currentHealth: 12,
-        maxHealth: 12,
-        attack: 10,
-        defense: 8
+        currentHealth: 18,
+        maxHealth: 18,
+        attack: 12,
+        defense: 11
     },
     19: {
         name: 'Minotaur',
         zone: 5,
-        currentHealth: 10,
-        maxHealth: 10,
-        attack: 8,
-        defense: 10
+        currentHealth: 14,
+        maxHealth: 14,
+        attack: 11,
+        defense: 13
     },
     20: {
         name: 'Hydra',
         zone: 5,
-        currentHealth: 8,
-        maxHealth: 8,
-        attack: 12,
-        defense: 10
+        currentHealth: 13,
+        maxHealth: 13,
+        attack: 15,
+        defense: 13
     }
 }
 
