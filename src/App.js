@@ -255,7 +255,7 @@ class App extends Component {
  
   render() { 
     return ( 
-      <>
+      <div className="App">
         <Message 
           message={this.state.message}
         /> 
@@ -286,7 +286,7 @@ class App extends Component {
           treasure={this.state.treasure}
         /> : <></>  } 
       <Footer />
-      </>
+      </div>
     );
   }
 }
