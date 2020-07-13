@@ -91,6 +91,7 @@ class App extends Component {
     message: "Welcome to Dragon Slayers!",
     monster: {},
     treasure: {},
+    inBattle: false
   }
 
   handleEncounter = () => {
@@ -117,14 +118,14 @@ class App extends Component {
     let boss = await bossAPI.getRandomBosses(zone);
     let msg = `You've encountered the boss of zone ${zone}!`;
     let newDeck = await this.buildBattleDeck(this.state.deck);
-    this.setState({message: msg, monster: boss, battleDeck: newDeck})
+    this.setState({message: msg, monster: boss, battleDeck: newDeck, inBattle: true})
   }
 
   handleMonsterEncounter = async (zone) => {
     let monster = await monsterAPI.getRandomMonster(zone);
     let msg = `You've encountered an angry monster!`;
     let newDeck = await this.buildBattleDeck(this.state.deck);
-    this.setState({message: msg, monster: monster, battleDeck: newDeck})
+    this.setState({message: msg, monster: monster, battleDeck: newDeck, inBattle: true})
   }
 
   handlePlayerMovement = async () => {
@@ -215,7 +216,7 @@ class App extends Component {
       newLocation = 121;
     }
     this.setState({message: "You lost the battle! You retreat to rethink your attack"})
-    this.setState({playerLocation: newLocation })
+    this.setState({playerLocation: newLocation, inBattle: false })
     this.setState(prevState => {
       let playerStats = Object.assign({}, prevState.playerStats);
       playerStats.currentHealth = newHealth;
@@ -233,19 +234,19 @@ class App extends Component {
       this.setState(prevState => {
         let playerStats = Object.assign({}, prevState.playerStats);
         playerStats.maxHealth += upgradeAmt;
-        return { playerStats, message: msg }
+        return { playerStats, message: msg, inBattle: false }
     });
     } else if (upgrade === "attack") {
       this.setState(prevState => {
         let playerStats = Object.assign({}, prevState.playerStats);
         playerStats.attack += upgradeAmt;
-        return { playerStats, message: msg }
+        return { playerStats, message: msg, inBattle: false }
     });
     } else {
       this.setState(prevState => {
         let playerStats = Object.assign({}, prevState.playerStats);
         playerStats.defense += upgradeAmt;
-        return { playerStats, message: msg }
+        return { playerStats, message: msg, inBattle: false }
     });
     }
   }
@@ -256,25 +257,30 @@ class App extends Component {
         <Message 
           message={this.state.message}
         /> 
+        {!this.state.inBattle ?
         <RollBtn 
           handlePlayerMovement={this.handlePlayerMovement}
-        />    
+        />
+        :
+        <></> }
         
         <Gameboard
           boardArr={boardArr}
           playerLocation={this.state.playerLocation}
         />
 
-        {boardArr[this.state.playerLocation-1].type === "Monster" || boardArr[this.state.playerLocation-1].type === "Boss" ? 
+        {(boardArr[this.state.playerLocation-1].type === "Monster" || boardArr[this.state.playerLocation-1].type === "Boss") && this.state.playerLocation !== 1 ? 
         <Battle 
           monster={this.state.monster}
           deck={this.state.deck}
           playerStats={this.state.playerStats}
           battleDeck={this.state.battleDeck}
           handleBattle={this.handleBattle}
+          inBattle={this.state.inBattle}
+          message={this.state.message}
         /> : <></>  } 
 
-        {boardArr[this.state.playerLocation-1].type === "Treasure" ? 
+        {boardArr[this.state.playerLocation-1].type === "Treasure" && this.state.playerLocation !== 1 ? 
         <Treasure 
           treasure={this.state.treasure}
         /> : <></>  } 

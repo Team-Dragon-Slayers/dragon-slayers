@@ -1,9 +1,12 @@
 import React from 'react';
 import './Battle.css';
+import Message from '../Message';
 
 const Battle = (props) => {
     return (  
         <div className="Battle"> 
+        {props.inBattle ?
+        <>
             <h1>Enter a battle with {props.monster.name}!</h1>
             <p>Current Health: {props.monster.currentHealth}</p>
             <p>Attack: {props.monster.attack}</p>
@@ -24,9 +27,12 @@ const Battle = (props) => {
             </button>
 
             )}
-            
-
+        </>
+        :
+        <p>The Battle is over!</p>
+        }
         </div>
+        
     );
 }
  
