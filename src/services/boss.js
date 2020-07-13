@@ -45,43 +45,43 @@ export const bosses = {
     6: {
         name: 'Enraged Hydra',
         zone: 3,
-        currentHealth: 10,
-        maxHealth: 10,
+        currentHealth: 12,
+        maxHealth: 12,
         attack: 13,
-        defense: 10
+        defense: 9
     },
     //zone 4
     7: {
         name: 'Manticore',
         zone: 4,
-        currentHealth: 16,
-        maxHealth: 16,
-        attack: 12,
+        currentHealth: 19,
+        maxHealth: 19,
+        attack: 13,
         defense: 10
     },
     8: {
         name: 'Cerberus',
         zone: 4,
-        currentHealth: 18,
-        maxHealth: 18,
-        attack: 8,
+        currentHealth: 22,
+        maxHealth: 22,
+        attack: 10,
         defense: 10
     },
     //zone 5
     9: {
         name: 'Phoenix',
         zone: 5,
-        currentHealth: 25,
-        maxHealth: 25,
-        attack: 14,
+        currentHealth: 30,
+        maxHealth: 30,
+        attack: 15,
         defense: 12
     },
     10: {
         name: 'Dragon',
         zone: 5,
-        currentHealth: 17,
-        maxHealth: 17,
-        attack: 24,
+        currentHealth: 20,
+        maxHealth: 20,
+        attack: 25,
         defense: 12
     },
     
