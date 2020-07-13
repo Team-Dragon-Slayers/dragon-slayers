@@ -1,5 +1,11 @@
+@font-face {
+  font-family: Main;
+  src: url("../src/fonts/Main.ttf")
+}
+
 .App {
   text-align: center;
+  font-family: Main;
 }
 
 .App-logo {

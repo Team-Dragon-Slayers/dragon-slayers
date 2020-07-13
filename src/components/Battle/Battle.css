@@ -9,6 +9,10 @@
     height: 150px;
 }
 
+button {
+    font-family: Main;
+}
+
 .Card-Title {
     font-weight: 600;
 }
