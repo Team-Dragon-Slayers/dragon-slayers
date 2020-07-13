@@ -1,6 +1,5 @@
 import React from 'react';
 import './Battle.css';
-import Message from '../Message';
 
 const Battle = (props) => {
     return (  

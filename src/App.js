@@ -277,7 +277,6 @@ class App extends Component {
           battleDeck={this.state.battleDeck}
           handleBattle={this.handleBattle}
           inBattle={this.state.inBattle}
-          message={this.state.message}
         /> : <></>  } 
 
         {boardArr[this.state.playerLocation-1].type === "Treasure" && this.state.playerLocation !== 1 ? 
