@@ -5,9 +5,10 @@ import Space from '../Space/Space';
 const Gameboard = (props) => {
     return ( 
        <div className={styles.GameBoard}>
-            {props.boardArr.map((el) =>
+            {props.boardArr.map((el, idx) =>
                 props.playerLocation === el.id ?
                 <Space
+                    key={idx}
                     id={el.id}
                     zone={el.zone}
                     row={el.row}
@@ -17,6 +18,7 @@ const Gameboard = (props) => {
                 />
                 :
                 <Space
+                    key={idx}
                     id={el.id}
                     zone={el.zone}
                     row={el.row}
