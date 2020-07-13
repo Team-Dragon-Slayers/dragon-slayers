@@ -8,6 +8,7 @@ import Battle from './components/Battle/Battle';
 import Treasure from './components/Treasure/Treasure';
 import * as cardAPI from './services/card';
 import * as monsterAPI from './services/monster';
+import * as bossAPI from './services/boss';
 import * as battleAPI from './services/battle';
 
 const randomNum = (n) => {
@@ -41,7 +42,6 @@ for(let i=1; i<6; i++){
   }
 }
 
-
 let messages = [
   "You stopped to pick some berries for a while.",
   "You found a nice spot to stop for a rest.",
@@ -50,7 +50,6 @@ let messages = [
   "You got stuck in some mud.",
   "You got hungry and stopped to have a snack"
 ]
-
 
 class App extends Component {
 
@@ -95,15 +94,16 @@ class App extends Component {
   }
 
   handleEncounter = () => {
-    if (boardArr[this.state.playerLocation-1].type === "Monster") {
-      console.log("Monster!")
-      this.handleMonsterEncounter(boardArr[this.state.playerLocation-1].zone)
-    } else if (boardArr[this.state.playerLocation-1].type === "Treasure") {
-      console.log("Treasure!")
+    let playerLocationSpace = boardArr[this.state.playerLocation-1];
+    if (playerLocationSpace.type === "Monster") {
+      this.handleMonsterEncounter(playerLocationSpace.zone)
+    } else if (playerLocationSpace.type === "Treasure") {
       this.addCardToDeck();
-    } else if (boardArr[this.state.playerLocation-1].type === "Blank") {
+    } else if (playerLocationSpace.type === "Blank") {
       this.getRandomMessage();
-    } else {
+    } else if(playerLocationSpace.type === "Boss"){
+      this.handleBossEncounter(playerLocationSpace.zone);
+    }else {
       this.setState({message: "Let's slay some dragons!"})
     }
   }
@@ -113,14 +113,18 @@ class App extends Component {
     this.setState({ message: message});
   }
 
+  handleBossEncounter = async (zone) => {
+    let boss = await bossAPI.getRandomBosses(zone);
+    let msg = `You've encountered the boss of zone ${zone}!`;
+    let newDeck = await this.buildBattleDeck(this.state.deck);
+    this.setState({message: msg, monster: boss, battleDeck: newDeck})
+  }
+
   handleMonsterEncounter = async (zone) => {
     let monster = await monsterAPI.getRandomMonster(zone);
     let msg = `You've encountered an angry monster!`;
     let newDeck = await this.buildBattleDeck(this.state.deck);
     this.setState({message: msg, monster: monster, battleDeck: newDeck})
-    console.log(monster);
-
-    console.log(this.state.battleDeck)
   }
 
   handlePlayerMovement = async () => {
@@ -134,16 +138,12 @@ class App extends Component {
 
   addCardToDeck = async () => {
     let newCard = await cardAPI.drawCard();
-    let msg = `You've stumbled upon a buried treasure! A new card has been added to your deck.`
-    console.log(newCard)
-    this.setState({ deck: [...this.state.deck, newCard], message: msg, treasure: newCard})
-    console.log(this.state.deck)
+    let msg = `You've stumbled upon a buried treasure! A new card has been added to your deck.`;
+    this.setState({ deck: [...this.state.deck, newCard], message: msg, treasure: newCard});
   }
 
   buildBattleDeck = async (playerDeck) => {
-    console.log(playerDeck);
     let battleDeck = await battleAPI.getBattleCards(playerDeck);
-    console.log(`battle deck from buildbattledeck func in app.js ${battleDeck}`)
     return battleDeck;
   }
 
@@ -212,20 +212,14 @@ class App extends Component {
           message={this.state.message}
         /> 
         
-        {boardArr[this.state.playerLocation-1].type === "Monster" ? 
+        {boardArr[this.state.playerLocation-1].type === "Monster" || boardArr[this.state.playerLocation-1].type === "Boss" ? 
         <Battle 
           monster={this.state.monster}
           deck={this.state.deck}
           playerStats={this.state.playerStats}
           battleDeck={this.state.battleDeck}
           handleBattle={this.handleBattle}
-          // buildBattleDeck={this.buildBattleDeck}
-          // getBattleDeck={this.getBattleDeck}
-          // getBattleCards={this.getBattleCards}
         /> : <></>  } 
-
-    {/* {boardArr[this.state.playerLocation-1].type === "Monster" ? this.buildBattleDeck() : <></> } */}
-
 
         {boardArr[this.state.playerLocation-1].type === "Treasure" ? 
         <Treasure 
