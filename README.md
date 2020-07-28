@@ -16,6 +16,7 @@ As participation in Mintbean's hackathon, our team has developed a full-stack ME
 - The first player to complete the board wins!
 
 ## View of the App:
+![Game Image](https://i.imgur.com/pP10ZgL.png)
 
 ## Technologies Implemented:
 React.js, Express.js, Node.js, MongoDB/Mongoose, JavaScript, HTML, CSS, Socket.io
