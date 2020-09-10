@@ -16,6 +16,7 @@ As participation in Mintbean's hackathon, our team has developed a full-stack ME
 - The first player to complete the board wins!
 
 ## View of the App:
+![Screenshots of Game](https://i.imgur.com/euVGamt.png)
 
 ## Technologies Implemented:
 React.js, Express.js, Node.js, MongoDB/Mongoose, JavaScript, HTML, CSS, Socket.io
@@ -23,6 +24,7 @@ React.js, Express.js, Node.js, MongoDB/Mongoose, JavaScript, HTML, CSS, Socket.i
 ## Credits:
 - Font by Chequered Ink @ https://www.fontspace.com/ancient-modern-tales-font-f28700
 - Card Deck Image by nicepng.com @ https://www.nicepng.com/maxp/u2q8a9a9y3u2u2q8/
+- Landing Page Overlay: https://github.com/davidtheclark/react-aria-modal
 
 ## Next Steps:
 - Move data to MongoDB and build into a full-stack MERN app
