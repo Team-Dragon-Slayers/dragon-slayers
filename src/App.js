@@ -6,6 +6,7 @@ import Message from './components/Message';
 import Battle from './components/Battle/Battle';
 import Treasure from './components/Treasure/Treasure';
 import Footer from './components/Footer/Footer';
+import LandingPageOverlay from './components/LandingPageOverlay';
 import * as cardAPI from './services/card';
 import * as monsterAPI from './services/monster';
 import * as bossAPI from './services/boss';
@@ -88,7 +89,7 @@ class App extends Component {
           points: 1
       }],
     battleDeck : [],
-    message: "Welcome to Dragon Slayers!",
+    message: "Let's Play Dragon Slayers!",
     monster: {},
     treasure: {},
     inBattle: false
@@ -226,6 +227,10 @@ class App extends Component {
   }
 
   handleBattleWin = () => {
+    if (this.state.playerLocation === 150) {
+      this.setState({ message: "You beat the final boss! You acheived victory! You win!!!"});
+      this.setState({ inBattle: false });
+    }
     let stats = ["Max Health", "Attack", "Defense"]
     let upgrade = stats[Math.floor(Math.random() * 3)]
     let upgradeAmt = Math.ceil(this.state.playerLocation / 30);
@@ -256,6 +261,7 @@ class App extends Component {
   render() { 
     return ( 
       <div className="App">
+        <LandingPageOverlay />
         <Message 
           message={this.state.message}
         /> 

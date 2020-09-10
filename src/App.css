@@ -42,3 +42,22 @@
     transform: rotate(360deg);
   }
 }
+
+.overlay {
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  margin-top: 30%;
+  color: white;
+  background-color: #6a6646;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.title {
+  font-family: Main;
+  font-weight: 550; 
+}

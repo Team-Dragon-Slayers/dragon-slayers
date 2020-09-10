@@ -18,9 +18,26 @@
     width: 40%;
 }
 
+a {
+    color: black;
+}
+
 .footer-info {
     padding-top: 5px;
     text-align: center;
     display: block;
     width: 30%;
+}
+
+#source-link {
+    color: black;
+    text-decoration: none;
+}
+
+#source-link:hover {
+    color: brown;
+}
+
+.link:hover {
+    color: brown;
 }
