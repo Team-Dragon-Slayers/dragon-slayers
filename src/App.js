@@ -119,14 +119,20 @@ class App extends Component {
     let boss = await bossAPI.getRandomBosses(zone);
     let msg = `You've encountered the boss of zone ${zone}!`;
     let newDeck = await this.buildBattleDeck(this.state.deck);
-    this.setState({message: msg, monster: boss, battleDeck: newDeck, inBattle: true})
+    this.setState({message: msg, inBattle: true});
+    setTimeout(() => {
+      this.setState({monster: boss, battleDeck: newDeck})
+    }, 1000);
   }
 
   handleMonsterEncounter = async (zone) => {
     let monster = await monsterAPI.getRandomMonster(zone);
     let msg = `You've encountered an angry monster!`;
     let newDeck = await this.buildBattleDeck(this.state.deck);
-    this.setState({message: msg, monster: monster, battleDeck: newDeck, inBattle: true})
+    this.setState({message: msg, inBattle: true});
+    setTimeout(() => {
+      this.setState({monster: monster, battleDeck: newDeck})
+    }, 1000); 
   }
 
   handlePlayerMovement = async () => {
@@ -142,6 +148,7 @@ class App extends Component {
     let newCard = await cardAPI.drawCard();
     let msg = `You've stumbled upon a buried treasure! A new card has been added to your deck.`;
     this.setState({ deck: [...this.state.deck, newCard], message: msg, treasure: newCard});
+   
   }
 
   buildBattleDeck = async (playerDeck) => {
@@ -150,33 +157,35 @@ class App extends Component {
   }
 
   handleBattle = (card) => {
-    let currentMonster = this.state.monster;
-    let playerStats = this.state.playerStats;
-    if (card.type === "Attack") {
-      let monsterHealth = currentMonster.currentHealth - (playerStats.attack + card.points - currentMonster.defense);
-      if (monsterHealth <= 0)  {
-        return this.handleBattleWin();
-      } else {
+    setTimeout(() => { 
+      let currentMonster = this.state.monster;
+      let playerStats = this.state.playerStats;
+      if (card.type === "Attack") {
+        let monsterHealth = currentMonster.currentHealth - (playerStats.attack + card.points - currentMonster.defense);
+        if (monsterHealth <= 0)  {
+          return this.handleBattleWin();
+        } else {
+          this.handleMonsterCounterAttack(0);
+        }
+        if (monsterHealth <= currentMonster.currentHealth) {
+          this.setState(prevState => {
+            let monster = Object.assign({}, prevState.monster);
+            monster.currentHealth = monsterHealth;
+            return { monster }
+          });
+        }
+      } else if (card.type === "Healing") {
+        let playerHealth = playerStats.currentHealth + card.points
         this.handleMonsterCounterAttack(0);
-      }
-      if (monsterHealth <= currentMonster.currentHealth) {
         this.setState(prevState => {
-          let monster = Object.assign({}, prevState.monster);
-          monster.currentHealth = monsterHealth;
-          return { monster }
+          let playerStats = Object.assign({}, prevState.playerStats);
+          playerStats.currentHealth = playerHealth;
+          return { playerStats }
         });
+      } else {
+        return this.handleMonsterCounterAttack(card.points);
       }
-    } else if (card.type === "Healing") {
-      let playerHealth = playerStats.currentHealth + card.points
-      this.handleMonsterCounterAttack(0);
-      this.setState(prevState => {
-        let playerStats = Object.assign({}, prevState.playerStats);
-        playerStats.currentHealth = playerHealth;
-        return { playerStats }
-      });
-    } else {
-      return this.handleMonsterCounterAttack(card.points);
-    }
+    }, 1000)
   }
 
   handleMonsterCounterAttack = async (bonusDefense) => {
@@ -218,7 +227,7 @@ class App extends Component {
       newLocation = 121;
     }
     this.setState({message: "You lost the battle! You retreat to rethink your attack"})
-    this.setState({playerLocation: newLocation, inBattle: false })
+    this.setState({playerLocation: newLocation, inBattle: false, monster: {} });
     this.setState(prevState => {
       let playerStats = Object.assign({}, prevState.playerStats);
       playerStats.currentHealth = newHealth;
@@ -229,7 +238,7 @@ class App extends Component {
   handleBattleWin = () => {
     if (this.state.playerLocation === 150) {
       this.setState({ message: "You beat the final boss! You acheived victory! You win!!!"});
-      this.setState({ inBattle: false });
+      this.setState({ inBattle: false, monster: {} });
     }
     let stats = ["Max Health", "Attack", "Defense"]
     let upgrade = stats[Math.floor(Math.random() * 3)]
@@ -241,19 +250,19 @@ class App extends Component {
         let playerStats = Object.assign({}, prevState.playerStats);
         playerStats.maxHealth = maxHealth;
         playerStats.currentHealth = maxHealth;
-        return { playerStats, message: msg, inBattle: false }
+        return { playerStats, message: msg, inBattle: false, monster: {} }
     });
     } else if (upgrade === "Attack") {
       this.setState(prevState => {
         let playerStats = Object.assign({}, prevState.playerStats);
         playerStats.attack += upgradeAmt;
-        return { playerStats, message: msg, inBattle: false }
+        return { playerStats, message: msg, inBattle: false, monster: {} }
     });
     } else {
       this.setState(prevState => {
         let playerStats = Object.assign({}, prevState.playerStats);
         playerStats.defense += upgradeAmt;
-        return { playerStats, message: msg, inBattle: false }
+        return { playerStats, message: msg, inBattle: false, monster: {} }
     });
     }
   }
