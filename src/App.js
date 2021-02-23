@@ -7,6 +7,7 @@ import Battle from './components/Battle/Battle';
 import Treasure from './components/Treasure/Treasure';
 import Footer from './components/Footer/Footer';
 import LandingPageOverlay from './components/LandingPageOverlay';
+import Key from './components/Key';
 import * as cardAPI from './services/card';
 import * as monsterAPI from './services/monster';
 import * as bossAPI from './services/boss';
@@ -285,6 +286,9 @@ class App extends Component {
           boardArr={boardArr}
           playerLocation={this.state.playerLocation}
         />
+
+        <Key />
+
 
         {(boardArr[this.state.playerLocation-1].type === "Monster" || boardArr[this.state.playerLocation-1].type === "Boss") && this.state.playerLocation !== 1 ? 
         <Battle 
