@@ -1,0 +1,22 @@
+.key {
+    width: 200px;
+    text-align: center;
+    border: black solid 1px;
+    margin-left: 10px;
+}
+
+.rest {
+    border: blue solid 5px;
+}
+
+.treasure {
+    border: gold solid 5px;
+}
+
+.monster {
+    border: brown solid 5px;
+}
+
+.boss {
+    border: purple solid 5px;
+}
