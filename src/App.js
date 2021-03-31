@@ -170,7 +170,7 @@ class App extends Component {
         }
         if (monsterHealth <= currentMonster.currentHealth) {
           this.setState(prevState => {
-            let monster = Object.assign({}, prevState.monster);
+            let monster = {...prevState.monster};
             monster.currentHealth = monsterHealth;
             return { monster }
           });
@@ -179,7 +179,7 @@ class App extends Component {
         let playerHealth = playerStats.currentHealth + card.points
         this.handleMonsterCounterAttack(0);
         this.setState(prevState => {
-          let playerStats = Object.assign({}, prevState.playerStats);
+          let playerStats = {...prevState.playerStats};
           playerStats.currentHealth = playerHealth;
           return { playerStats }
         });
@@ -205,7 +205,7 @@ class App extends Component {
     console.log(JSON.stringify(newBattleDeck));
     if (playerHealth < this.state.playerStats.currentHealth) {
       this.setState(prevState => {
-        let playerStats = Object.assign({}, prevState.playerStats);
+        let playerStats = {...prevState.playerStats};
         playerStats.currentHealth = playerHealth;
         return { playerStats }
       });
@@ -230,7 +230,7 @@ class App extends Component {
     this.setState({message: "You lost the battle! You retreat to rethink your attack"})
     this.setState({playerLocation: newLocation, inBattle: false, monster: {} });
     this.setState(prevState => {
-      let playerStats = Object.assign({}, prevState.playerStats);
+      let playerStats = {...prevState.playerStats};
       playerStats.currentHealth = newHealth;
       return { playerStats }
     });
@@ -248,20 +248,20 @@ class App extends Component {
     if (upgrade === "Max Health") {
       let maxHealth = this.state.playerStats.maxHealth + upgradeAmt;
       this.setState(prevState => {
-        let playerStats = Object.assign({}, prevState.playerStats);
+        let playerStats = {...prevState.playerStats};
         playerStats.maxHealth = maxHealth;
         playerStats.currentHealth = maxHealth;
         return { playerStats, message: msg, inBattle: false, monster: {} }
     });
     } else if (upgrade === "Attack") {
       this.setState(prevState => {
-        let playerStats = Object.assign({}, prevState.playerStats);
+        let playerStats = {...prevState.playerStats};
         playerStats.attack += upgradeAmt;
         return { playerStats, message: msg, inBattle: false, monster: {} }
     });
     } else {
       this.setState(prevState => {
-        let playerStats = Object.assign({}, prevState.playerStats);
+        let playerStats = {...prevState.playerStats};
         playerStats.defense += upgradeAmt;
         return { playerStats, message: msg, inBattle: false, monster: {} }
     });
